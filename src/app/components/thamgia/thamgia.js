@@ -94,9 +94,54 @@ export default function Thamgia() {
               />
             </div>
           </div>
-          <button className="float-end px-6 py-[10px] bg-[#131212] text-white rounded-md">
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            className="float-end px-6 py-[10px] bg-[#131212] text-white rounded-md"
+          >
             Gửi bài dự thi
           </button>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Xác nhận gửi bài thi
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              Thông tin nội dung bài thi của bạn đã chính xác?
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="rounded-md px-6 py-[8px]"
+                data-bs-dismiss="modal"
+              >
+                Xem lại
+              </button>
+              <button
+                type="button"
+                class="bg-[#131212] px-6 py-[8px] text-white rounded-md"
+              >
+                Gửi
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
