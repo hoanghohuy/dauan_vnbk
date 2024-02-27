@@ -1,0 +1,26 @@
+#header {
+    padding: 16px 40px 16px 0;
+    background: rgba(12, 33, 90, 0.70);
+    backdrop-filter: blur(30px);
+}
+
+.nav-pills .nav-link {
+    padding: 12px 0;
+    font-weight: 600;
+    color: #1239A7;
+}
+
+.nav-pills .nav-link.active {
+    color: #fff;
+    border-radius: 168px;
+    background: #002BA3;
+}
+
+.dangky-input {
+    width: 100%;
+    font-size: 14px;
+    padding: 9px 16px;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #D2D4D8;
+}
