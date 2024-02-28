@@ -1,6 +1,29 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 export default function Thamgia() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [linkFacebook, setLinkFacebook] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState([]);
+  const [linkSelectedImage, setLinkSelectedImage] = useState([]);
+  const [linkVideo, setLinkVideo] = useState([]);
+
+  const handleSubmit = async () => {
+    console.log({
+      name,
+      email,
+      phone,
+      linkFacebook,
+      title,
+      content,
+      image,
+      linkVideo,
+    });
+  };
   return (
     <section id="dangky" className="mt-4">
       <div className=" bg-white px-8 py-6 rounded-xl max-w-[672px] mx-auto flex flex-col gap-3">
@@ -9,48 +32,54 @@ export default function Thamgia() {
         </div>
         <div>
           <div className="row">
-            <div class="col-6 pb-3">
+            <div className="col-6 pb-3">
               <input
+                onChange={(e) => setName(e.target.value)}
                 type="text"
                 required
                 placeholder="Họ và tên"
                 className="dangky-input"
               />
             </div>
-            <div class="col-6 pb-3">
+            <div className="col-6 pb-3">
               <input
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 required
                 placeholder="Email"
                 className="dangky-input"
               />
             </div>
-            <div class="col-6 pb-3">
+            <div className="col-6 pb-3">
               <input
+                onChange={(e) => setPhone(e.target.value)}
                 type="number"
                 required
                 placeholder="Số điện thoại"
                 className="dangky-input"
               />
             </div>
-            <div class="col-6 pb-3">
+            <div className="col-6 pb-3">
               <input
+                onChange={(e) => setLinkFacebook(e.target.value)}
                 type="text"
                 required
                 placeholder="Link Facebook cá nhân"
                 className="dangky-input"
               />
             </div>
-            <div class="col-12 pb-3">
+            <div className="col-12 pb-3">
               <input
+                onChange={(e) => setTitle(e.target.value)}
                 type="text"
                 required
                 placeholder="Tiêu đề bài viết"
                 className="dangky-input"
               />
             </div>
-            <div class="col-12 pb-6">
+            <div className="col-12 pb-6">
               <textarea
+                onChange={(e) => setContent(e.target.value)}
                 minLength={100}
                 required
                 maxLength={1000}
@@ -65,7 +94,34 @@ export default function Thamgia() {
             </div>
             <div id="upload-image" className="col-12 w-full">
               <div className="text-center py-10 px-5 border-[1px] border-dashed border-[#B1B5C3] rounded-md">
-                <input className="hidden" id="upload-input-image" type="file" />
+                <input
+                  className="hidden"
+                  id="upload-input-image"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={({ target }) => {
+                    if (target.files) {
+                      const listFile = target.files;
+                      if (listFile) {
+                        if (listFile.length > 4) {
+                          alert("Vui lòng chọn tối đa 4 ảnh.");
+                          return;
+                        }
+                        const listLinkImage = [];
+                        for (let i = 0; i < listFile.length; i++) {
+                          listLinkImage.push(
+                            URL ? URL?.createObjectURL(listFile[i]) : ""
+                          );
+                        }
+                        console.log("listLinkImage", listLinkImage);
+                        console.log("listFile", listFile);
+                        setLinkSelectedImage(listLinkImage);
+                        setImage(listFile);
+                      }
+                    }
+                  }}
+                />
                 <div className="text-center text-[14px] font-[500]">
                   Kéo và thả file của bạn vào khung này, hoặc{" "}
                   <label
@@ -81,12 +137,28 @@ export default function Thamgia() {
                 </div>
               </div>
             </div>
+            {linkSelectedImage && linkSelectedImage.length > 0 && (
+              <div className="col-12 py-3">
+                <div className="text-[14px] font-[600] pb-2">
+                  Hình ảnh đã chọn:
+                </div>
+                <div className="flex gap-4">
+                  {linkSelectedImage &&
+                    linkSelectedImage.length > 0 &&
+                    linkSelectedImage.map((item, index) => (
+                      <img key={item} className="w-auto h-[50px]" src={item} />
+                    ))}
+                </div>
+              </div>
+            )}
+
             <div className="text-[14px] font-[600] pb-2 mt-6">
               Link video ghi lại chuyến đi của bạn (nếu có){" "}
               <span className="text-[#808288]">(Tối đa 1 video)</span>
             </div>
-            <div class="col-12 pb-3">
+            <div className="col-12 pb-3">
               <input
+                onChange={(e) => setLinkVideo(e.target.value)}
                 type="text"
                 required
                 placeholder="Link video"
@@ -104,39 +176,40 @@ export default function Thamgia() {
         </div>
       </div>
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
                 Xác nhận gửi bài thi
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               Thông tin nội dung bài thi của bạn đã chính xác?
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="rounded-md px-6 py-[8px]"
+                className="rounded-md px-6 py-[8px]"
                 data-bs-dismiss="modal"
               >
                 Xem lại
               </button>
               <button
+                onClick={handleSubmit}
                 type="button"
-                class="bg-[#131212] px-6 py-[8px] text-white rounded-md"
+                className="bg-[#131212] px-6 py-[8px] text-white rounded-md"
               >
                 Gửi
               </button>
