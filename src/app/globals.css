@@ -9,6 +9,7 @@
 
 body {
   background: url('/background.png') repeat-y;
+  background-size: cover;
   /* background: rgba(15, 39, 107, 0.92);
   backdrop-filter: blur(4px); */
 }

@@ -25,14 +25,14 @@ export default function Thamgia() {
     });
   };
   return (
-    <section id="dangky" className="mt-4">
-      <div className=" bg-white px-8 py-6 rounded-xl max-w-[672px] mx-auto flex flex-col gap-3">
+    <section id="dangky" className="mt-4 sm:px-5">
+      <div className=" bg-white px-8 py-6 rounded-xl max-w-[672px] mx-auto flex flex-col gap-3 sm:px-6">
         <div className="text-[#1239A7] font-[700] text-[20px] text-center">
           ĐĂNG KÝ BÀI DỰ THI CỦA BẠN
         </div>
         <div>
           <div className="row">
-            <div className="col-6 pb-3">
+            <div className="col-6 pb-3 sm:w-full">
               <input
                 onChange={(e) => setName(e.target.value)}
                 type="text"
@@ -41,7 +41,7 @@ export default function Thamgia() {
                 className="dangky-input"
               />
             </div>
-            <div className="col-6 pb-3">
+            <div className="col-6 pb-3 sm:w-full">
               <input
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
@@ -50,7 +50,7 @@ export default function Thamgia() {
                 className="dangky-input"
               />
             </div>
-            <div className="col-6 pb-3">
+            <div className="col-6 pb-3 sm:w-full">
               <input
                 onChange={(e) => setPhone(e.target.value)}
                 type="number"
@@ -59,7 +59,7 @@ export default function Thamgia() {
                 className="dangky-input"
               />
             </div>
-            <div className="col-6 pb-3">
+            <div className="col-6 pb-3 sm:w-full">
               <input
                 onChange={(e) => setLinkFacebook(e.target.value)}
                 type="text"
@@ -169,7 +169,7 @@ export default function Thamgia() {
           <button
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-            className="float-end px-6 py-[10px] bg-[#131212] text-white rounded-md"
+            className="float-end px-6 py-[10px] bg-[#0A2E97] text-white rounded-md xs:w-full"
           >
             Gửi bài dự thi
           </button>
@@ -209,7 +209,7 @@ export default function Thamgia() {
               <button
                 onClick={handleSubmit}
                 type="button"
-                className="bg-[#131212] px-6 py-[8px] text-white rounded-md"
+                className="bg-[#0A2E97] px-6 py-[8px] text-white rounded-md"
               >
                 Gửi
               </button>

@@ -5,11 +5,11 @@ export default function TabThele() {
     <div>
       <div>
         <ul
-          className="nav nav-pills nav-fill mb-3 bg-[#F8F9FF] rounded-full"
+          className="nav nav-pills nav-fill mb-3 bg-[#F8F9FF] rounded-full xs:rounded-none"
           id="pills-tab"
           role="tablist"
         >
-          <li className="nav-item w-[33.333%]" role="presentation">
+          <li className="nav-item w-[33.333%] xs:w-[100%]" role="presentation">
             <button
               className="nav-link active"
               id="pills-home-tab"
