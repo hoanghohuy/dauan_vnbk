@@ -4,6 +4,7 @@ import "./styles.css";
 import Thele from "@/components/thele/thele";
 import Thamgia from "@/components/thamgia/thamgia";
 import Danhsach from "@/components/baithi/danhsach";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: "Dấu ấn trên từng bước chân - VietnamBooking",
@@ -18,6 +19,7 @@ export default function Home() {
         <Thamgia />
         <Danhsach />
       </main>
+      <ToastContainer />
     </>
   );
 }

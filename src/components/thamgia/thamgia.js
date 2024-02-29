@@ -1,5 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import React, { useRef, useState } from "react";
+import { toast } from "react-toastify";
+import { Alert } from "../alert/alert";
+import { validateEmail, validatePhoneNumber } from "@/validation";
 
 export default function Thamgia() {
   const [name, setName] = useState("");
@@ -11,8 +15,43 @@ export default function Thamgia() {
   const [image, setImage] = useState([]);
   const [linkSelectedImage, setLinkSelectedImage] = useState([]);
   const [linkVideo, setLinkVideo] = useState([]);
+  const buttonShowModalRef = useRef();
+  const buttonCloseModalRef = useRef();
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const phoneRef = useRef();
+  const contentRef = useRef();
+  const [disabled, setDisabled] = useState(false);
+
+  const handleCheckBeforeSubmit = () => {
+    if (name == "") {
+      Alert("warning", "Vui lòng nhập vào tên của bạn!");
+      nameRef.current.focus();
+      return;
+    }
+    if (!validateEmail(email)) {
+      Alert("warning", "Vui lòng nhập email đúng định dạng!");
+      emailRef.current.focus();
+      return;
+    }
+
+    if (!validatePhoneNumber(phone)) {
+      Alert("warning", "Vui lòng nhập số điện thoại đúng định dạng!");
+      phoneRef.current.focus();
+      return;
+    }
+
+    if (content.trim().length > 1000) {
+      Alert("warning", "Nội dung của bạn phải có độ dài dưới 1000 từ!");
+      phoneRef.current.focus();
+      return;
+    }
+
+    buttonShowModalRef.current.click();
+  };
 
   const handleSubmit = async () => {
+    setDisabled(true);
     console.log({
       name,
       email,
@@ -23,6 +62,12 @@ export default function Thamgia() {
       image,
       linkVideo,
     });
+    buttonCloseModalRef.current.click();
+    Alert(
+      "success",
+      "Bài thi của bạn đã được hệ thống ghi nhận. Cảm ơn bạn đóng góp của bạn!"
+    );
+    setDisabled(false);
   };
   return (
     <section id="dangky" className="mt-4 sm:px-5">
@@ -34,6 +79,7 @@ export default function Thamgia() {
           <div className="row">
             <div className="col-6 pb-3 sm:w-full">
               <input
+                ref={nameRef}
                 onChange={(e) => setName(e.target.value)}
                 type="text"
                 required
@@ -43,6 +89,7 @@ export default function Thamgia() {
             </div>
             <div className="col-6 pb-3 sm:w-full">
               <input
+                ref={emailRef}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 required
@@ -52,6 +99,7 @@ export default function Thamgia() {
             </div>
             <div className="col-6 pb-3 sm:w-full">
               <input
+                ref={phoneRef}
                 onChange={(e) => setPhone(e.target.value)}
                 type="number"
                 required
@@ -105,7 +153,7 @@ export default function Thamgia() {
                       const listFile = target.files;
                       if (listFile) {
                         if (listFile.length > 4) {
-                          alert("Vui lòng chọn tối đa 4 ảnh.");
+                          Alert("error", "Vui lòng chỉ tải lên tối đa 4 ảnh!");
                           return;
                         }
                         const listLinkImage = [];
@@ -114,8 +162,6 @@ export default function Thamgia() {
                             URL ? URL?.createObjectURL(listFile[i]) : ""
                           );
                         }
-                        console.log("listLinkImage", listLinkImage);
-                        console.log("listFile", listFile);
                         setLinkSelectedImage(listLinkImage);
                         setImage(listFile);
                       }
@@ -167,9 +213,17 @@ export default function Thamgia() {
             </div>
           </div>
           <button
+            disabled={disabled}
+            onClick={handleCheckBeforeSubmit}
+            className="float-end px-6 py-[10px] bg-[#0A2E97] text-white rounded-md xs:w-full disabled:bg-[#60A5FA]"
+          >
+            {disabled ? "Đang gửi..." : "Gửi bài dự thi"}
+          </button>
+          <button
+            ref={buttonShowModalRef}
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            className="float-end px-6 py-[10px] bg-[#0A2E97] text-white rounded-md xs:w-full"
+            data-bs-target="#confirmModal"
+            className="hidden"
           >
             Gửi bài dự thi
           </button>
@@ -177,15 +231,15 @@ export default function Thamgia() {
       </div>
       <div
         className="modal fade"
-        id="exampleModal"
+        id="confirmModal"
         tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby="confirmModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
+              <h1 className="modal-title fs-5" id="confirmModalLabel">
                 Xác nhận gửi bài thi
               </h1>
               <button
@@ -200,6 +254,7 @@ export default function Thamgia() {
             </div>
             <div className="modal-footer">
               <button
+                ref={buttonCloseModalRef}
                 type="button"
                 className="rounded-md px-6 py-[8px]"
                 data-bs-dismiss="modal"
