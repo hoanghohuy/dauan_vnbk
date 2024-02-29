@@ -78,15 +78,23 @@ export default function Header() {
           showMenu ? ":block" : ""
         }`}
       >
-        <a onClick={() => setShowMenu(false)} className="block" href="#thele">
+        <a
+          onClick={() => setShowMenu(false)}
+          className="block py-2"
+          href="#thele"
+        >
           Thể lệ dự thi
         </a>
-        <a onClick={() => setShowMenu(false)} className="block" href="#dangky">
+        <a
+          onClick={() => setShowMenu(false)}
+          className="block py-2"
+          href="#dangky"
+        >
           Đăng ký dự thi
         </a>
         <a
           onClick={() => setShowMenu(false)}
-          className="block"
+          className="block py-2"
           href="#danhsach"
         >
           Danh sách bài dự thi

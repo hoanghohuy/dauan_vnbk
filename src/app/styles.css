@@ -8,6 +8,7 @@
     padding: 12px 0;
     font-weight: 600;
     color: #1239A7;
+    transition: none;
 }
 
 .nav-pills .nav-link.active {
