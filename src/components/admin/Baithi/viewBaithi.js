@@ -81,7 +81,7 @@ export default function ViewBaithi({ baithi }) {
                   />
                 </div>
                 <div className="col-6 pb-3">
-                  <label>Link video</label>
+                  <label>Link video Tiktok, youtube,...</label>
                   <input
                     readOnly
                     value={dataBaithi.video}

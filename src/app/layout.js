@@ -20,14 +20,6 @@ export default function RootLayout({ children }) {
         strategy="afterInteractive"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
       />
-      <Script
-        strategy="afterInteractive"
-        src="https://cdn.datatables.net/2.0.1/js/dataTables.min.js"
-      />
-      <Script
-        strategy="afterInteractive"
-        src="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.min.css"
-      />
     </html>
   );
 }

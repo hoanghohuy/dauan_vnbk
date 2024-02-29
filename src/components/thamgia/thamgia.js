@@ -207,7 +207,7 @@ export default function Thamgia() {
                 onChange={(e) => setLinkVideo(e.target.value)}
                 type="text"
                 required
-                placeholder="Link video"
+                placeholder="Link video tiktok, youtube,..."
                 className="dangky-input"
               />
             </div>

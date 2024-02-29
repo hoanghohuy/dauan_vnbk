@@ -28,7 +28,15 @@ export default function Danhsach() {
           <div className="row">
             {[1, 2, 3, 4, 5].map((item, index) => (
               <div className="col-4 pb-4 sm:w-[50%]">
-                <img src={data.image} className="rounded-md" />
+                <div className="bai-thi-wrapper relative rounded-md">
+                  <a
+                    href={`/bai-thi/${data.id}`}
+                    className="hidden mask-baithi text-white text-[12px] items-center justify-center absolute w-full h-full bg-[#777]"
+                  >
+                    {data.title}
+                  </a>
+                  <img src={data.image} className="rounded-md" />
+                </div>
               </div>
             ))}
           </div>
