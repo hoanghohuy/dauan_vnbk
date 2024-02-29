@@ -1,19 +1,19 @@
 import User from "@/models/User";
 import connect from "@/utils/db";
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 await connect();
 
 export const GET = async (request, { params }) => {
   const { id } = params;
   try {
     const user = await User.findById(id);
-
     if (!user) {
-      return new NextResponse("User not found", { status: 404 });
+      return NextResponse.json({error: "User not found"}, { status: 404 });
     }
-    return new NextResponse(user, );
+
+    return NextResponse.json(user);
   } catch (error) {
-    return new NextResponse(error.message, { status: 500 });
+    return NextResponse.json(error.message, { status: 500 });
   }
 };
 
@@ -22,9 +22,9 @@ export const PUT = async (request, { params }) => {
   const updateData = await request.json();
 
   try {
-    const response = await updateById(id, updateData);
-    return new NextResponse(response );
+    const response = await User.findOneAndUpdate({_id: id}, updateData);
+    return NextResponse.json(response);
   } catch (error) {
-    return new NextResponse(error.message, { status: 500 });
+    return NextResponse.json({error:error.message}, { status: 500 });
   }
 };
