@@ -2,8 +2,6 @@
 import React from "react";
 import Danhsach from "../baithi/danhsach";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import "./customSlider.css";
 
 const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
@@ -61,19 +59,18 @@ export default function Detail() {
                 <path d="M8 1L2 7L8 13" stroke="white" stroke-width="2" />
               </svg>
             </div>
-
-            <div>Quay lại</div>
+            <a href="/">Quay lại</a>
           </div>
           <div className="bg-white rounded-xl px-12 py-6">
             <h1 className="text-[#102561] font-[700] text-[24px]">
               Sài Gòn Nơi Hồn Tết Hòa Mình Trong Sắc Xuân
             </h1>
-            <div className="flex gap-10 pt-1">
+            <div className="flex gap-10 pt-1 text-[12px]">
               <div>
                 <b>Tác giả: </b>Hồ Huy Hoàng
               </div>
               <div>
-                <b>Ngày dự thi:: </b>29/02/2024
+                <b>Ngày dự thi: </b>29/02/2024
               </div>
             </div>
             <div id="slider-image" className="py-3">
@@ -85,7 +82,18 @@ export default function Detail() {
                 ))}
               </Slider>
             </div>
-            <div id="content">
+            <div className="w-full pb-3">
+              <iframe
+                width="100%"
+                height="320"
+                src="https://www.youtube.com/embed/mzqvF_rIOx8"
+                title="Sau lời từ khước (OST MAI) | Phan Mạnh Quỳnh | Lyrics video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div className="text-[14px]" id="content">
               Trong những ngày cuối năm, tinh thần Tết đã ngập tràn khắp nơi ở
               Thành phố Hồ Chí Minh. Đây không chỉ là một kỳ nghỉ lễ, mà còn là
               dịp để mọi người sum vầy bên gia đình, tận hưởng không khí xuân

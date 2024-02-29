@@ -3,8 +3,9 @@
 }
 .custom__slider .slick-dots {
     list-style: none;
-    bottom: -40px;
-    left: 5px;
+    bottom: 6px;
+    right: -0;
+    text-align: right;
 }
 
 .slick-dots li button:before {
