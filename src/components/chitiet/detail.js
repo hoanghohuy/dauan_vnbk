@@ -116,7 +116,12 @@ export default function Detail({ id }) {
               </Slider>
             </div>
             <div className="w-full pb-3">
-              Video Đính kèm:
+              <div className="text-[14px] pb-1">
+                Video đính kèm:{" "}
+                <a className="underline" href={`${detailPost?.videoLink}`}>
+                  {detailPost?.videoLink}
+                </a>
+              </div>
               {detailPost?.content && (
                 <iframe
                   width="100%"

@@ -276,7 +276,7 @@ export default function Thamgia() {
           <button
             disabled={disabled}
             onClick={handleCheckBeforeSubmit}
-            className="float-end px-6 py-[10px] bg-[#0A2E97] text-white rounded-md xs:w-full disabled:bg-[#60A5FA]"
+            className="float-end px-6 py-[10px] bg-[#0A2E97] text-white rounded-md xs:w-full disabled:bg-[#60A5FA] hover:bg-[#172554]"
           >
             {disabled ? "Đang gửi..." : "Gửi bài dự thi"}
           </button>
