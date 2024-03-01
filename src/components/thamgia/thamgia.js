@@ -24,28 +24,28 @@ export default function Thamgia() {
   const [disabled, setDisabled] = useState(false);
 
   const handleCheckBeforeSubmit = () => {
-    // if (name == "") {
-    //   Alert("warning", "Vui lòng nhập vào tên của bạn!");
-    //   nameRef.current.focus();
-    //   return;
-    // }
-    // if (!validateEmail(email)) {
-    //   Alert("warning", "Vui lòng nhập email đúng định dạng!");
-    //   emailRef.current.focus();
-    //   return;
-    // }
+    if (name == "") {
+      Alert("warning", "Vui lòng nhập vào tên của bạn!");
+      nameRef.current.focus();
+      return;
+    }
+    if (!validateEmail(email)) {
+      Alert("warning", "Vui lòng nhập email đúng định dạng!");
+      emailRef.current.focus();
+      return;
+    }
 
-    // if (!validatePhoneNumber(phone)) {
-    //   Alert("warning", "Vui lòng nhập số điện thoại đúng định dạng!");
-    //   phoneRef.current.focus();
-    //   return;
-    // }
+    if (!validatePhoneNumber(phone)) {
+      Alert("warning", "Vui lòng nhập số điện thoại đúng định dạng!");
+      phoneRef.current.focus();
+      return;
+    }
 
-    // if (content.trim().length > 1000) {
-    //   Alert("warning", "Nội dung của bạn phải có độ dài dưới 1000 từ!");
-    //   phoneRef.current.focus();
-    //   return;
-    // }
+    if (content.trim().length > 1000) {
+      Alert("warning", "Nội dung của bạn phải có độ dài dưới 1000 từ!");
+      phoneRef.current.focus();
+      return;
+    }
 
     buttonShowModalRef.current.click();
   };
