@@ -1,40 +1,29 @@
 "use client";
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
 import ViewBaithi from "./Baithi/viewBaithi";
+import { getAllPost } from "@/libs/getPost";
+import moment from "moment";
 
-const data = [
-  {
-    id: 1,
-    name: "Hồ Huy Hoàng",
-    email: "hhhoang.h3@gmail.com",
-    phone: "0394210763",
-    facebook: "https://www.facebook.com",
-    title: "Dấu ấn VietnamBooking",
-    video: "https://www.youtube.com/watch/video",
-    image: [
-      "https://bizweb.dktcdn.net/100/360/145/files/chup-anh-tet-dep-namnguyenstudio-1.jpg?v=1578371896324",
-      "https://bizweb.dktcdn.net/100/360/145/files/chup-anh-tet-dep-namnguyenstudio-1.jpg?v=1578371896324",
-      "https://bizweb.dktcdn.net/100/360/145/files/chup-anh-tet-dep-namnguyenstudio-1.jpg?v=1578371896324",
-      "https://bizweb.dktcdn.net/100/360/145/files/chup-anh-tet-dep-namnguyenstudio-1.jpg?v=1578371896324",
-    ],
-    time: "28/2/2024 23:59:59",
-    status: "Mới",
-  },
-  {
-    id: 2,
-    name: "Nguyễn Ngọc Vũ Hoàng",
-    email: "vuhoang@gmail.com",
-    phone: "03873213213",
-    facebook: "https://www.facebook.com/123",
-    title: "Xuân Giáp Thìn",
-    video: "https://www.youtube.com/watch/video123",
-    time: "24/2/2024 20:45:11",
-    status: "Mới",
-  },
-];
 export default function Admin() {
-  const [dataBaiViet, setDataBaiViet] = useState([]);
+  const [dataPost, setDataPost] = useState([]);
+  const [loadingData, setLoadingData] = useState(true);
+
+  const getData = async () => {
+    const data = await getAllPost();
+    setDataPost(data);
+    setLoadingData(false);
+  };
+
+  const reloadData = async () => {
+    setLoadingData(true);
+    const data = await getAllPost();
+    setDataPost(data);
+    setLoadingData(false);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <>
@@ -45,8 +34,11 @@ export default function Admin() {
       </header>
       <div className="p-4">
         <div className="pb-2">
-          <div className="text-white">Tổng bài dự thi: 1</div>
-          <div className="text-white">Tổng bài dự thi đã phê duyệt: 1</div>
+          <div className="text-white">Tổng bài dự thi: {dataPost.length}</div>
+          <div className="text-white">
+            Tổng bài dự thi đã phê duyệt:{" "}
+            {dataPost.filter((item) => item.published == 1).length}
+          </div>
         </div>
         <table id="example" class="table table-striped">
           <thead>
@@ -58,27 +50,56 @@ export default function Admin() {
               <th>Email</th>
               <th>Số điện thoại</th>
               <th>Tiêu đề</th>
+              <th>Điểm</th>
               <th>Hành động</th>
             </tr>
           </thead>
           <tbody>
-            {data &&
-              data.map((item) => (
+            {dataPost && dataPost.length > 0 ? (
+              dataPost.map((item, index) => (
                 <tr>
-                  <td>{item.id}</td>
+                  <td>{index + 1}</td>
                   <td>
-                    <div className={`btn btn-success`}>{item.status}</div>
+                    <div
+                      className={`btn ${
+                        item.published == 2
+                          ? "btn-secondary"
+                          : item.published == 1
+                          ? "btn-success"
+                          : "btn-danger"
+                      }`}
+                    >
+                      {item.published == 2
+                        ? "Mới"
+                        : item.published == 1
+                        ? "Đã duyệt"
+                        : "Từ chối"}
+                    </div>
                   </td>
-                  <td>{item.time}</td>
+                  <td>{moment(item?.createdAt).format("DD/MM/YYYY hh:mm")}</td>
                   <td>{item.name}</td>
                   <td>{item.email}</td>
-                  <td>{item.phone}</td>
+                  <td>{item.phoneNumber}</td>
                   <td>{item.title}</td>
+                  <td>{item.points}</td>
                   <td>
-                    <ViewBaithi baithi={item} />
+                    <ViewBaithi baithi={item} callBack={reloadData} />
                   </td>
                 </tr>
-              ))}
+              ))
+            ) : (
+              <tr>
+                <td>Trống</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            )}
           </tbody>
           <tfoot>
             <tr>
@@ -89,6 +110,7 @@ export default function Admin() {
               <th>Email</th>
               <th>Số điện thoại</th>
               <th>Tiêu đề</th>
+              <th>Điểm</th>
               <th>Hành động</th>
             </tr>
           </tfoot>

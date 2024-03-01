@@ -1,6 +1,9 @@
-import Image from "next/image";
-import Header from "@/components/header/header";
+import "./globals.css";
 import "./styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Header from "@/components/header/header";
 import Thele from "@/components/thele/thele";
 import Thamgia from "@/components/thamgia/thamgia";
 import Danhsach from "@/components/baithi/danhsach";

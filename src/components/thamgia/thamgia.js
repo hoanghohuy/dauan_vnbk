@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { Alert } from "../alert/alert";
 import { validateEmail, validatePhoneNumber } from "@/validation";
+import Swal from "sweetalert2";
 
 export default function Thamgia() {
   const [name, setName] = useState("");
@@ -14,7 +15,7 @@ export default function Thamgia() {
   const [content, setContent] = useState("");
   const [image, setImage] = useState([]);
   const [linkSelectedImage, setLinkSelectedImage] = useState([]);
-  const [linkVideo, setLinkVideo] = useState([]);
+  const [linkVideo, setLinkVideo] = useState("");
   const buttonShowModalRef = useRef();
   const buttonCloseModalRef = useRef();
   const nameRef = useRef();
@@ -99,10 +100,30 @@ export default function Thamgia() {
       });
       if (resp.status === 201) {
         buttonCloseModalRef.current.click();
-        Alert(
-          "success",
-          "Bài thi của bạn đã được hệ thống ghi nhận. Cảm ơn bạn đóng góp của bạn!"
-        );
+        // Alert(
+        //   "success",
+        //   "Bài thi của bạn đã được hệ thống ghi nhận. Cảm ơn bạn đóng góp của bạn!"
+        // );
+        setName("");
+        setEmail("");
+        setPhone("");
+        setLinkFacebook("");
+        setTitle("");
+        setContent("");
+        setImage([]);
+        setLinkSelectedImage([]);
+        setLinkVideo([]);
+        Swal.fire({
+          title: "Gửi bài dự thi thành công",
+          text: "Cám ơn bạn đã gửi bài dự thi cho chúng tôi.",
+          icon: "success",
+          confirmButtonText: "Xác nhận",
+          customClass: {
+            title: "customTitle",
+            confirmButton: "customConfirmButton",
+            htmlContainer: "customHtmlContainer",
+          },
+        });
         setDisabled(false);
       }
     } catch (error) {
@@ -170,7 +191,7 @@ export default function Thamgia() {
                 onChange={(e) => setContent(e.target.value)}
                 minLength={100}
                 required
-                maxLength={1000}
+                maxLength={6000}
                 type="text"
                 placeholder="Chia sẻ những kỉ niệm của bạn (tối đa 1000 từ)"
                 className="dangky-input min-h-[150px]"

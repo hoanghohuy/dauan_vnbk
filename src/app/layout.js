@@ -1,10 +1,5 @@
 import { Inter } from "next/font/google";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./globals.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Script from "next/script";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

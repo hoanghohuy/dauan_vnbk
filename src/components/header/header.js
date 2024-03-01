@@ -68,9 +68,15 @@ export default function Header() {
           </div>
         </div>
         <div className="w-[40%] text-[16px] flex items-center justify-end gap-10 text-white xl:gap-5 lg:w-[50%] md:w-[60%] md:gap-4 sm:hidden">
-          <a href="#thele">Thể lệ dự thi</a>
-          <a href="#dangky">Đăng ký dự thi</a>
-          <a href="#danhsach">Danh sách bài dự thi</a>
+          <a className="text-white no-underline" href="#thele">
+            Thể lệ dự thi
+          </a>
+          <a className="text-white no-underline" href="#dangky">
+            Đăng ký dự thi
+          </a>
+          <a className="text-white no-underline" href="#danhsach">
+            Danh sách bài dự thi
+          </a>
         </div>
       </div>
       <div
@@ -80,21 +86,21 @@ export default function Header() {
       >
         <a
           onClick={() => setShowMenu(false)}
-          className="block py-2"
+          className="block py-2 text-white no-underline"
           href="#thele"
         >
           Thể lệ dự thi
         </a>
         <a
           onClick={() => setShowMenu(false)}
-          className="block py-2"
+          className="block py-2 text-white no-underline"
           href="#dangky"
         >
           Đăng ký dự thi
         </a>
         <a
           onClick={() => setShowMenu(false)}
-          className="block py-2"
+          className="block py-2 text-white no-underline"
           href="#danhsach"
         >
           Danh sách bài dự thi

@@ -16,7 +16,7 @@ const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
       viewBox="0 0 9 14"
       fill="none"
     >
-      <path d="M8 1L2 7L8 13" stroke="#131313" stroke-width="2" />
+      <path d="M8 1L2 7L8 13" stroke="#131313" strokeWidth="2" />
     </svg>
   </div>
 );
@@ -30,7 +30,7 @@ const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
       viewBox="0 0 9 14"
       fill="none"
     >
-      <path d="M1 13L7 7L0.999999 1" stroke="#131313" stroke-width="2" />
+      <path d="M1 13L7 7L0.999999 1" stroke="#131313" strokeWidth="2" />
     </svg>
   </div>
 );
@@ -70,7 +70,7 @@ export default function Detail({ id }) {
                 viewBox="0 0 9 14"
                 fill="none"
               >
-                <path d="M8 1L2 7L8 13" stroke="white" stroke-width="2" />
+                <path d="M8 1L2 7L8 13" stroke="white" strokeWidth="2" />
               </svg>
             </div>
             <Link href="/">Quay lại</Link>
@@ -101,8 +101,9 @@ export default function Detail({ id }) {
               <Slider {...settings} className="custom__slider">
                 {detailPost?.images ? (
                   detailPost?.images.map((item) => (
-                    <div>
+                    <div key={item}>
                       <img
+                        className="w-full"
                         src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
                       />
                     </div>
@@ -125,7 +126,11 @@ export default function Detail({ id }) {
               )}
             </div>
             <div className="text-[14px]" id="content">
-              {detailPost?.content}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: detailPost?.content,
+                }}
+              ></div>
             </div>
           </div>
         </div>
