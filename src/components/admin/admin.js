@@ -34,10 +34,12 @@ export default function Admin() {
       </header>
       <div className="p-4">
         <div className="pb-2">
-          <div className="text-white">Tổng bài dự thi: {dataPost.length}</div>
           <div className="text-white">
-            Tổng bài dự thi đã phê duyệt:{" "}
-            {dataPost.filter((item) => item.published == 1).length}
+            Số bài viết mới:{" "}
+            {dataPost.filter((item) => item.published == 2).length}
+          </div>
+          <div className="text-white">
+            Tổng số bài dự thi: {dataPost.length}
           </div>
         </div>
         <table id="example" class="table table-striped">

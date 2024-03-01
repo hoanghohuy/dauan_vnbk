@@ -42,9 +42,12 @@ export default function Thamgia() {
       return;
     }
 
-    if (content.trim().length > 1000) {
-      Alert("warning", "Nội dung của bạn phải có độ dài dưới 1000 từ!");
-      phoneRef.current.focus();
+    if (content.trim().length > 1000 || content.trim().length < 1) {
+      Alert(
+        "warning",
+        "Nội dung của bạn không được để trống và phải có độ dài dưới 1000 từ!"
+      );
+      contentRef.current.focus();
       return;
     }
 
@@ -80,6 +83,7 @@ export default function Thamgia() {
         Alert("warning", "File của bạn chưa được tải lên!");
       }
     }
+    buttonCloseModalRef.current.click();
     const dataBody = {
       name: name,
       email: email,
@@ -92,27 +96,12 @@ export default function Thamgia() {
       published: 2,
       points: 0,
     };
-
     try {
       const resp = await fetch("/api/exam", {
         method: "POST",
         body: JSON.stringify(dataBody),
       });
       if (resp.status === 201) {
-        buttonCloseModalRef.current.click();
-        // Alert(
-        //   "success",
-        //   "Bài thi của bạn đã được hệ thống ghi nhận. Cảm ơn bạn đóng góp của bạn!"
-        // );
-        setName("");
-        setEmail("");
-        setPhone("");
-        setLinkFacebook("");
-        setTitle("");
-        setContent("");
-        setImage([]);
-        setLinkSelectedImage([]);
-        setLinkVideo([]);
         Swal.fire({
           title: "Gửi bài dự thi thành công",
           text: "Cám ơn bạn đã gửi bài dự thi cho chúng tôi.",
@@ -125,6 +114,21 @@ export default function Thamgia() {
           },
         });
         setDisabled(false);
+        setName("");
+        setEmail("");
+        setPhone("");
+        setLinkFacebook("");
+        setTitle("");
+        setContent("");
+        setImage([]);
+        setLinkSelectedImage([]);
+        setLinkVideo([]);
+      } else {
+        setDisabled(false);
+        Alert(
+          "warning",
+          "Bài viết của bạn chưa được tải lên. Hãy thử lại sau!"
+        );
       }
     } catch (error) {
       Alert("warning", "Bài viết của bạn chưa được tải lên. Hãy thử lại sau!");
@@ -188,6 +192,7 @@ export default function Thamgia() {
             </div>
             <div className="col-12 pb-6">
               <textarea
+                ref={contentRef}
                 onChange={(e) => setContent(e.target.value)}
                 minLength={100}
                 required
