@@ -24,50 +24,90 @@ export default function Thamgia() {
   const [disabled, setDisabled] = useState(false);
 
   const handleCheckBeforeSubmit = () => {
-    if (name == "") {
-      Alert("warning", "Vui lòng nhập vào tên của bạn!");
-      nameRef.current.focus();
-      return;
-    }
-    if (!validateEmail(email)) {
-      Alert("warning", "Vui lòng nhập email đúng định dạng!");
-      emailRef.current.focus();
-      return;
-    }
+    // if (name == "") {
+    //   Alert("warning", "Vui lòng nhập vào tên của bạn!");
+    //   nameRef.current.focus();
+    //   return;
+    // }
+    // if (!validateEmail(email)) {
+    //   Alert("warning", "Vui lòng nhập email đúng định dạng!");
+    //   emailRef.current.focus();
+    //   return;
+    // }
 
-    if (!validatePhoneNumber(phone)) {
-      Alert("warning", "Vui lòng nhập số điện thoại đúng định dạng!");
-      phoneRef.current.focus();
-      return;
-    }
+    // if (!validatePhoneNumber(phone)) {
+    //   Alert("warning", "Vui lòng nhập số điện thoại đúng định dạng!");
+    //   phoneRef.current.focus();
+    //   return;
+    // }
 
-    if (content.trim().length > 1000) {
-      Alert("warning", "Nội dung của bạn phải có độ dài dưới 1000 từ!");
-      phoneRef.current.focus();
-      return;
-    }
+    // if (content.trim().length > 1000) {
+    //   Alert("warning", "Nội dung của bạn phải có độ dài dưới 1000 từ!");
+    //   phoneRef.current.focus();
+    //   return;
+    // }
 
     buttonShowModalRef.current.click();
   };
 
   const handleSubmit = async () => {
     setDisabled(true);
-    console.log({
-      name,
-      email,
-      phone,
-      linkFacebook,
-      title,
-      content,
-      image,
-      linkVideo,
-    });
-    buttonCloseModalRef.current.click();
-    Alert(
-      "success",
-      "Bài thi của bạn đã được hệ thống ghi nhận. Cảm ơn bạn đóng góp của bạn!"
-    );
-    setDisabled(false);
+    let listImage = [];
+    if (image.length > 0) {
+      let fd = new FormData();
+      Object.keys(image).map((item) => {
+        fd.append("images", image[item]);
+      });
+      try {
+        const resp = await fetch(
+          `${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/images`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
+            },
+            body: fd,
+          }
+        );
+        if (resp.status != 200) {
+          Alert("warning", "File của bạn chưa được tải lên!");
+          return;
+        }
+        const respJson = await resp.json();
+        listImage = await respJson?.uploadedImageNames;
+      } catch (error) {
+        Alert("warning", "File của bạn chưa được tải lên!");
+      }
+    }
+    const dataBody = {
+      name: name,
+      email: email,
+      phoneNumber: phone,
+      facebookLink: linkFacebook,
+      title: title,
+      content: content,
+      images: listImage,
+      videoLink: linkVideo,
+      published: 2,
+      points: 0,
+    };
+
+    try {
+      const resp = await fetch("/api/exam", {
+        method: "POST",
+        body: JSON.stringify(dataBody),
+      });
+      if (resp.status === 201) {
+        buttonCloseModalRef.current.click();
+        Alert(
+          "success",
+          "Bài thi của bạn đã được hệ thống ghi nhận. Cảm ơn bạn đóng góp của bạn!"
+        );
+        setDisabled(false);
+      }
+    } catch (error) {
+      Alert("warning", "Bài viết của bạn chưa được tải lên. Hãy thử lại sau!");
+    }
   };
   return (
     <section id="dangky" className="mt-4 sm:px-5">

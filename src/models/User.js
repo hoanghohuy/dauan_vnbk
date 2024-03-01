@@ -10,7 +10,6 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
-      unique: true,
       required: true,
     },
     phoneNumber: {
@@ -40,7 +39,7 @@ const userSchema = new Schema(
     published: {
       type: Number,
       enum: [0, 1, 2], // 0: is refused, 1: is approved, 2: pending
-      defaultValue:2,
+      defaultValue: 2,
     },
   },
   { timestamps: true }
