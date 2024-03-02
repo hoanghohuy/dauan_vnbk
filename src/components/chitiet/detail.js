@@ -48,6 +48,7 @@ const settings = {
 };
 
 export default function Detail({ data }) {
+  console.log("data", data);
   return (
     <main>
       <section className="pt-5 sm:px-5 sm:!pt-4">
@@ -68,25 +69,23 @@ export default function Detail({ data }) {
           </div>
           <div className="bg-white rounded-xl px-12 py-6">
             <h1 className="text-[#102561] font-[700] text-[24px]">
-              {data?.title}
+              {data.title}
             </h1>
             <div className="flex gap-10 pt-1 text-[12px]">
               <div>
                 <b>Tác giả: </b>
-                {data?.name ? data?.name : "Đang tải"}
+                {data.name}
               </div>
               <div>
                 <b>Ngày dự thi: </b>
-                {data?.createdAt
-                  ? moment(data?.createdAt).format("DD/MM/YYYY")
-                  : "Đang tải"}
+                {moment(data?.createdAt).format("DD/MM/YYYY")}
               </div>
             </div>
-            {data?.images && data?.images.length > 0 ? (
+            {data.images && data.images.length > 0 ? (
               <div id="slider-image" className="py-3">
                 <Slider {...settings} className="custom__slider">
-                  {data?.images ? (
-                    data?.images.map((item) => (
+                  {data.images ? (
+                    data.images.map((item) => (
                       <div key={item}>
                         <img
                           className="w-full"
@@ -104,23 +103,23 @@ export default function Detail({ data }) {
             ) : (
               <div className="text-[14px] py-1">Chưa có hình ảnh đính kèm.</div>
             )}
-            {data?.videoLink ? (
+            {data.videoLink ? (
               <div className="w-full pb-3">
                 <div className="text-[14px] pb-1">
                   Video đính kèm:{" "}
                   <a
                     className="underline"
-                    href={`${data?.videoLink}`}
+                    href={`${data.videoLink}`}
                     target="_blank"
                   >
                     {data?.videoLink}
                   </a>
                 </div>
-                {data?.content && (
+                {data.content && (
                   <iframe
                     width="100%"
                     height="315"
-                    src={data?.videoLink}
+                    src={data.videoLink}
                   ></iframe>
                 )}
               </div>
@@ -131,7 +130,7 @@ export default function Detail({ data }) {
             <div className="text-[14px]" id="content">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: data?.content,
+                  __html: data.content,
                 }}
               ></div>
             </div>
