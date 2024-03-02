@@ -38,6 +38,8 @@ const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
 const settings = {
   dots: true,
   infinite: true,
+  autoplay: true,
+  autoplaySpeed: 3000,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -45,18 +47,7 @@ const settings = {
   prevArrow: <SlickArrowLeft />,
 };
 
-export default function Detail({ id }) {
-  const [detailPost, setDetailPost] = useState({});
-  const [loading, setLoading] = useState(true);
-
-  const getDataPostByID = async () => {
-    const data = await getPostByID(id);
-    setDetailPost(data);
-    setLoading(false);
-  };
-  useState(() => {
-    getDataPostByID();
-  }, []);
+export default function Detail({ data }) {
   return (
     <main>
       <section className="pt-5 sm:px-5 sm:!pt-4">
@@ -77,63 +68,70 @@ export default function Detail({ id }) {
           </div>
           <div className="bg-white rounded-xl px-12 py-6">
             <h1 className="text-[#102561] font-[700] text-[24px]">
-              {detailPost?.title ? (
-                detailPost?.title
-              ) : (
-                <div className="placeholder-glow">
-                  <span className="placeholder w-full h-auto rounded-md"></span>
-                </div>
-              )}
+              {data?.title}
             </h1>
             <div className="flex gap-10 pt-1 text-[12px]">
               <div>
                 <b>Tác giả: </b>
-                {detailPost?.name ? detailPost?.name : "Đang tải"}
+                {data?.name ? data?.name : "Đang tải"}
               </div>
               <div>
                 <b>Ngày dự thi: </b>
-                {detailPost?.createdAt
-                  ? moment(detailPost?.createdAt).format("DD/MM/YYYY")
+                {data?.createdAt
+                  ? moment(data?.createdAt).format("DD/MM/YYYY")
                   : "Đang tải"}
               </div>
             </div>
-            <div id="slider-image" className="py-3">
-              <Slider {...settings} className="custom__slider">
-                {detailPost?.images ? (
-                  detailPost?.images.map((item) => (
-                    <div key={item}>
-                      <img
-                        className="w-full"
-                        src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
-                      />
+            {data?.images && data?.images.length > 0 ? (
+              <div id="slider-image" className="py-3">
+                <Slider {...settings} className="custom__slider">
+                  {data?.images ? (
+                    data?.images.map((item) => (
+                      <div key={item}>
+                        <img
+                          className="w-full"
+                          src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
+                        />
+                      </div>
+                    ))
+                  ) : (
+                    <div className="placeholder-glow">
+                      <span className="placeholder w-full h-[380px] rounded-md"></span>
                     </div>
-                  ))
-                ) : (
-                  <div className="placeholder-glow">
-                    <span className="placeholder w-full h-[380px] rounded-md"></span>
-                  </div>
-                )}
-              </Slider>
-            </div>
-            <div className="w-full pb-3">
-              <div className="text-[14px] pb-1">
-                Video đính kèm:{" "}
-                <a className="underline" href={`${detailPost?.videoLink}`}>
-                  {detailPost?.videoLink}
-                </a>
+                  )}
+                </Slider>
               </div>
-              {detailPost?.content && (
-                <iframe
-                  width="100%"
-                  height="315"
-                  src={detailPost?.videoLink}
-                ></iframe>
-              )}
-            </div>
+            ) : (
+              <div className="text-[14px] py-1">Chưa có hình ảnh đính kèm.</div>
+            )}
+            {data?.videoLink ? (
+              <div className="w-full pb-3">
+                <div className="text-[14px] pb-1">
+                  Video đính kèm:{" "}
+                  <a
+                    className="underline"
+                    href={`${data?.videoLink}`}
+                    target="_blank"
+                  >
+                    {data?.videoLink}
+                  </a>
+                </div>
+                {data?.content && (
+                  <iframe
+                    width="100%"
+                    height="315"
+                    src={data?.videoLink}
+                  ></iframe>
+                )}
+              </div>
+            ) : (
+              <div className="text-[14px] py-1">Chưa có video đính kèm.</div>
+            )}
+
             <div className="text-[14px]" id="content">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: detailPost?.content,
+                  __html: data?.content,
                 }}
               ></div>
             </div>

@@ -25,3 +25,21 @@ export async function getPostByID(id) {
     return {};
   }
 }
+
+export async function getPostByIDServer(id) {
+  try {
+    const resp = await fetch(
+      `${process.env.NEXT_PUBLIC_SITE_URL}/api/exam/${id}`,
+      {
+        method: "GET",
+      }
+    );
+    if (resp.status === 200) {
+      const respData = await resp.json();
+      return respData;
+    }
+  } catch (error) {
+    console.log("error", error.message);
+    return {};
+  }
+}
