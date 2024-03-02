@@ -47,7 +47,18 @@ const settings = {
   prevArrow: <SlickArrowLeft />,
 };
 
-export default function Detail({ data }) {
+export default function Detail({ id }) {
+  const [detailPost, setDetailPost] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  const getDataPostByID = async () => {
+    const data = await getPostByID(id);
+    setDetailPost(data);
+    setLoading(false);
+  };
+  useState(() => {
+    getDataPostByID();
+  }, []);
   return (
     <main>
       <section className="pt-5 sm:px-5 sm:!pt-4">
@@ -68,23 +79,31 @@ export default function Detail({ data }) {
           </div>
           <div className="bg-white rounded-xl px-12 py-6">
             <h1 className="text-[#102561] font-[700] text-[24px]">
-              {data.title}
+              {detailPost?.title ? (
+                detailPost?.title
+              ) : (
+                <div className="placeholder-glow">
+                  <span className="placeholder w-full h-auto rounded-md"></span>
+                </div>
+              )}
             </h1>
             <div className="flex gap-10 pt-1 text-[12px]">
               <div>
                 <b>Tác giả: </b>
-                {data.name}
+                {detailPost?.name ? detailPost?.name : "Đang tải"}
               </div>
               <div>
                 <b>Ngày dự thi: </b>
-                {moment(data?.createdAt).format("DD/MM/YYYY")}
+                {detailPost?.createdAt
+                  ? moment(detailPost?.createdAt).format("DD/MM/YYYY")
+                  : "Đang tải"}
               </div>
             </div>
-            {data.images && data.images.length > 0 ? (
+            {detailPost?.images && detailPost?.images.length > 0 ? (
               <div id="slider-image" className="py-3">
                 <Slider {...settings} className="custom__slider">
-                  {data.images ? (
-                    data.images.map((item) => (
+                  {detailPost?.images ? (
+                    detailPost?.images.map((item) => (
                       <div key={item}>
                         <img
                           className="w-full"
@@ -100,36 +119,35 @@ export default function Detail({ data }) {
                 </Slider>
               </div>
             ) : (
-              <div className="text-[14px] py-1">Chưa có hình ảnh đính kèm.</div>
+              <div className="text-[14px] py-1">Chưa có hình ảnh đính kèm</div>
             )}
-            {data.videoLink ? (
+            {detailPost?.videoLink ? (
               <div className="w-full pb-3">
                 <div className="text-[14px] pb-1">
                   Video đính kèm:{" "}
                   <a
                     className="underline"
-                    href={`${data.videoLink}`}
+                    href={`${detailPost?.videoLink}`}
                     target="_blank"
                   >
-                    {data?.videoLink}
+                    {detailPost?.videoLink}
                   </a>
                 </div>
-                {data.content && (
+                {detailPost?.content && (
                   <iframe
                     width="100%"
                     height="315"
-                    src={data.videoLink}
+                    src={detailPost?.videoLink}
                   ></iframe>
                 )}
               </div>
             ) : (
-              <div className="text-[14px] py-1">Chưa có video đính kèm.</div>
+              <div className="text-[14px] py-1">Chưa có video đính kèm</div>
             )}
-
             <div className="text-[14px]" id="content">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: data.content,
+                  __html: detailPost?.content,
                 }}
               ></div>
             </div>
