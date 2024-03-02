@@ -48,7 +48,6 @@ const settings = {
 };
 
 export default function Detail({ data }) {
-  console.log("data", data);
   return (
     <main>
       <section className="pt-5 sm:px-5 sm:!pt-4">
