@@ -50,11 +50,17 @@ const settings = {
 export default function Detail({ id }) {
   const [detailPost, setDetailPost] = useState({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const getDataPostByID = async () => {
     const data = await getPostByID(id);
-    setDetailPost(data);
-    setLoading(false);
+    if (data) {
+      setDetailPost(data);
+      setLoading(false);
+    } else {
+      setError(true);
+      setLoading(false);
+    }
   };
   useState(() => {
     getDataPostByID();
@@ -78,79 +84,87 @@ export default function Detail({ id }) {
             <Link href="/">Quay lại</Link>
           </div>
           <div className="bg-white rounded-xl px-12 py-6">
-            <h1 className="text-[#102561] font-[700] text-[24px]">
-              {detailPost?.title ? (
-                detailPost?.title
-              ) : (
-                <div className="placeholder-glow">
-                  <span className="placeholder w-full h-auto rounded-md"></span>
-                </div>
-              )}
-            </h1>
-            <div className="flex gap-10 pt-1 text-[12px]">
-              <div>
-                <b>Tác giả: </b>
-                {detailPost?.name ? detailPost?.name : "Đang tải"}
-              </div>
-              <div>
-                <b>Ngày dự thi: </b>
-                {detailPost?.createdAt
-                  ? moment(detailPost?.createdAt).format("DD/MM/YYYY")
-                  : "Đang tải"}
-              </div>
-            </div>
-            {detailPost?.images && detailPost?.images.length > 0 ? (
-              <div id="slider-image" className="py-3">
-                <Slider {...settings} className="custom__slider">
-                  {detailPost?.images ? (
-                    detailPost?.images.map((item) => (
-                      <div key={item}>
-                        <img
-                          className="w-full"
-                          src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
-                        />
-                      </div>
-                    ))
+            {!error ? (
+              <>
+                <h1 className="text-[#102561] font-[700] text-[24px]">
+                  {detailPost?.title ? (
+                    detailPost?.title
                   ) : (
                     <div className="placeholder-glow">
-                      <span className="placeholder w-full h-[380px] rounded-md"></span>
+                      <span className="placeholder w-full h-auto rounded-md"></span>
                     </div>
                   )}
-                </Slider>
-              </div>
-            ) : (
-              <div className="text-[14px] py-1">Chưa có hình ảnh đính kèm</div>
-            )}
-            {detailPost?.videoLink ? (
-              <div className="w-full pb-3">
-                <div className="text-[14px] pb-1">
-                  Video đính kèm:{" "}
-                  <a
-                    className="underline"
-                    href={`${detailPost?.videoLink}`}
-                    target="_blank"
-                  >
-                    {detailPost?.videoLink}
-                  </a>
+                </h1>
+                <div className="flex gap-10 pt-1 text-[12px]">
+                  <div>
+                    <b>Tác giả: </b>
+                    {detailPost?.name ? detailPost?.name : "Đang tải"}
+                  </div>
+                  <div>
+                    <b>Ngày dự thi: </b>
+                    {detailPost?.createdAt
+                      ? moment(detailPost?.createdAt).format("DD/MM/YYYY")
+                      : "Đang tải"}
+                  </div>
                 </div>
-                {detailPost?.content && (
-                  <iframe
-                    width="100%"
-                    height="315"
-                    src={detailPost?.videoLink}
-                  ></iframe>
+                {detailPost?.images && detailPost?.images.length > 0 ? (
+                  <div id="slider-image" className="py-3">
+                    <Slider {...settings} className="custom__slider">
+                      {detailPost?.images ? (
+                        detailPost?.images.map((item) => (
+                          <div key={item}>
+                            <img
+                              className="w-full"
+                              src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
+                            />
+                          </div>
+                        ))
+                      ) : (
+                        <div className="placeholder-glow">
+                          <span className="placeholder w-full h-[380px] rounded-md"></span>
+                        </div>
+                      )}
+                    </Slider>
+                  </div>
+                ) : (
+                  ""
                 )}
-              </div>
+                {detailPost?.videoLink ? (
+                  <div className="w-full pb-3">
+                    <div className="text-[14px] pb-1">
+                      Video đính kèm:{" "}
+                      <a
+                        className="underline"
+                        href={`${detailPost?.videoLink}`}
+                        target="_blank"
+                      >
+                        {detailPost?.videoLink}
+                      </a>
+                    </div>
+                    {detailPost?.content && (
+                      <iframe
+                        width="100%"
+                        height="315"
+                        src={detailPost?.videoLink}
+                      ></iframe>
+                    )}
+                  </div>
+                ) : (
+                  ""
+                )}
+                <div className="text-[14px] pt-2" id="content">
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: detailPost?.content,
+                    }}
+                  ></div>
+                </div>
+              </>
             ) : (
-              <div className="text-[14px] py-1">Chưa có video đính kèm</div>
+              <div className="text-[#102561] font-[700] text-[24px]">
+                Bài viết không tồn tại
+              </div>
             )}
-            <div className="text-[14px]" id="content">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: detailPost?.content,
-                }}
-              ></div>
-            </div>
           </div>
         </div>
       </section>

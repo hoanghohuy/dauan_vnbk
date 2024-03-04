@@ -142,7 +142,7 @@ export default function Thamgia() {
         </div>
         <div>
           <div className="row">
-            <div className="col-6 pb-3 sm:w-full">
+            <div className="col-6 pb-3 sm:!w-full">
               <input
                 ref={nameRef}
                 onChange={(e) => setName(e.target.value)}
@@ -152,7 +152,7 @@ export default function Thamgia() {
                 className="dangky-input"
               />
             </div>
-            <div className="col-6 pb-3 sm:w-full">
+            <div className="col-6 pb-3 sm:!w-full">
               <input
                 ref={emailRef}
                 onChange={(e) => setEmail(e.target.value)}
@@ -162,7 +162,7 @@ export default function Thamgia() {
                 className="dangky-input"
               />
             </div>
-            <div className="col-6 pb-3 sm:w-full">
+            <div className="col-6 pb-3 sm:!w-full">
               <input
                 ref={phoneRef}
                 onChange={(e) => setPhone(e.target.value)}
@@ -172,7 +172,7 @@ export default function Thamgia() {
                 className="dangky-input"
               />
             </div>
-            <div className="col-6 pb-3 sm:w-full">
+            <div className="col-6 pb-3 sm:!w-full">
               <input
                 onChange={(e) => setLinkFacebook(e.target.value)}
                 type="text"
@@ -281,7 +281,7 @@ export default function Thamgia() {
           <button
             disabled={disabled}
             onClick={handleCheckBeforeSubmit}
-            className="float-end px-6 py-[10px] bg-[#0A2E97] text-white rounded-md xs:w-full disabled:bg-[#60A5FA] hover:bg-[#172554]"
+            className="float-end px-6 py-[10px] bg-[#0A2E97] text-white rounded-md xs:w-full disabled:bg-[#60A5FA] hover:bg-[#00196B]"
           >
             {disabled ? "Đang gửi..." : "Gửi bài dự thi"}
           </button>

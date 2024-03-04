@@ -30,7 +30,7 @@ export default function Danhsach() {
             <div className="row">
               {dataPost && dataPost.length > 0
                 ? dataPost.map((item, index) => (
-                    <div key={item._id} className="col-4 pb-4 sm:w-[50%]">
+                    <div key={item._id} className="col-4 pb-4 sm:!w-[50%]">
                       <div className="bai-thi-wrapper relative rounded-md">
                         <a
                           href={`/bai-thi/${item._id}`}

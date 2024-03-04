@@ -182,26 +182,30 @@ export default function ViewBaithi({ baithi, callBack }) {
                     className="dangky-input min-h-[300px]"
                   />
                 </div>
-                <div className="col-12 pb-3">
-                  <label>Hình ảnh đính kèm</label>
-                  <div className="flex flex-col gap-4">
-                    <Slider {...settings} className="custom__slider">
-                      {dataBaithi?.images ? (
-                        dataBaithi?.images.map((item) => (
-                          <div key={item}>
-                            <img
-                              src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
-                            />
+                {dataBaithi?.images && dataBaithi?.images.length ? (
+                  <div className="col-12 pb-3">
+                    <label>Hình ảnh đính kèm</label>
+                    <div className="flex flex-col gap-4">
+                      <Slider {...settings} className="custom__slider">
+                        {dataBaithi?.images ? (
+                          dataBaithi?.images.map((item) => (
+                            <div key={item}>
+                              <img
+                                src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
+                              />
+                            </div>
+                          ))
+                        ) : (
+                          <div className="placeholder-glow">
+                            <span className="placeholder w-full h-[380px] rounded-md"></span>
                           </div>
-                        ))
-                      ) : (
-                        <div className="placeholder-glow">
-                          <span className="placeholder w-full h-[380px] rounded-md"></span>
-                        </div>
-                      )}
-                    </Slider>
+                        )}
+                      </Slider>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="col-12">Không có hình ảnh đính kèm</div>
+                )}
               </div>
             </div>
             <div className="modal-footer">
