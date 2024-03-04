@@ -22,6 +22,10 @@ export default function Thamgia() {
   const emailRef = useRef();
   const phoneRef = useRef();
   const contentRef = useRef();
+  const facebookLinkRef = useRef();
+  const titleRef = useRef();
+  const linkVideoRef = useRef();
+
   const [disabled, setDisabled] = useState(false);
 
   const handleCheckBeforeSubmit = () => {
@@ -113,16 +117,8 @@ export default function Thamgia() {
             htmlContainer: "customHtmlContainer",
           },
         });
+        resetForm();
         setDisabled(false);
-        setName("");
-        setEmail("");
-        setPhone("");
-        setLinkFacebook("");
-        setTitle("");
-        setContent("");
-        setImage([]);
-        setLinkSelectedImage([]);
-        setLinkVideo([]);
       } else {
         setDisabled(false);
         Alert(
@@ -134,6 +130,24 @@ export default function Thamgia() {
       Alert("warning", "Bài viết của bạn chưa được tải lên. Hãy thử lại sau!");
     }
   };
+
+  const resetForm = () => {
+    setName("");
+    nameRef.current.value = "";
+    setEmail("");
+    emailRef.current.value = "";
+    setPhone("");
+    phoneRef.current.value = "";
+    setLinkFacebook("");
+    facebookLinkRef.current.value = "";
+    setTitle("");
+    titleRef.current.value = "";
+    setContent("");
+    contentRef.current.value = "";
+    setLinkVideo("");
+    linkVideoRef.current.value = "";
+  };
+
   return (
     <section id="dangky" className="mt-4 sm:px-5">
       <div className=" bg-white px-8 py-6 rounded-xl max-w-[672px] mx-auto flex flex-col gap-3 sm:px-6">
@@ -174,6 +188,7 @@ export default function Thamgia() {
             </div>
             <div className="col-6 pb-3 sm:!w-full">
               <input
+                ref={facebookLinkRef}
                 onChange={(e) => setLinkFacebook(e.target.value)}
                 type="text"
                 required
@@ -183,6 +198,7 @@ export default function Thamgia() {
             </div>
             <div className="col-12 pb-3">
               <input
+                ref={titleRef}
                 onChange={(e) => setTitle(e.target.value)}
                 type="text"
                 required
@@ -270,6 +286,7 @@ export default function Thamgia() {
             </div>
             <div className="col-12 pb-3">
               <input
+                ref={linkVideoRef}
                 onChange={(e) => setLinkVideo(e.target.value)}
                 type="text"
                 required

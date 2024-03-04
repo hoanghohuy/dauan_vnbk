@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ViewBaithi from "./Baithi/viewBaithi";
 import { getAllPost } from "@/libs/getPost";
 import moment from "moment";
@@ -12,6 +12,7 @@ export default function Admin() {
   const [password, setPassword] = useState("");
   const [loadingData, setLoadingData] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const passwordRef = useRef();
 
   const getData = async () => {
     const data = await getAllPost();
@@ -37,7 +38,7 @@ export default function Admin() {
   };
 
   useEffect(() => {
-    getData();
+    passwordRef.current.focus();
   }, []);
 
   return (
@@ -48,11 +49,13 @@ export default function Admin() {
         </a>
       </header>
       {!isAdmin ? (
-        <form className="pt-2" onSubmit={submitForm}>
+        <form className="px-4 pt-2" onSubmit={submitForm}>
           <div>
             <label className="text-white mr-2">Password: </label>
             <input
+              ref={passwordRef}
               type="password"
+              autoComplete="off"
               className="outline-none px-1"
               onChange={(e) => setPassword(e.target.value)}
             ></input>

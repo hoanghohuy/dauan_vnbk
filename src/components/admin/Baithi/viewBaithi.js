@@ -234,7 +234,7 @@ export default function ViewBaithi({ baithi, callBack }) {
               <button
                 onClick={() => handleUpdate("reject")}
                 type="button"
-                className="btn btn-warning bg-[#ffca2c]"
+                className="btn btn-danger"
               >
                 Từ chối
               </button>
