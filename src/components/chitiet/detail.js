@@ -68,7 +68,7 @@ export default function Detail({ id }) {
   return (
     <main>
       <section className="pt-5 sm:px-5 sm:!pt-4">
-        <div className=" max-w-[672px] mx-auto flex flex-col gap-3 sm:px-6">
+        <div className=" max-w-[672px] mx-auto flex flex-col gap-3 sm:px-0">
           <div className="text-white flex items-center gap-3">
             <div>
               <svg
@@ -83,7 +83,7 @@ export default function Detail({ id }) {
             </div>
             <Link href="/">Quay lại</Link>
           </div>
-          <div className="bg-white rounded-xl px-12 py-6">
+          <div className="bg-white rounded-xl px-12 py-6 sm:px-6">
             {!error ? (
               <>
                 <h1 className="text-[#102561] font-[700] text-[24px]">
@@ -95,7 +95,7 @@ export default function Detail({ id }) {
                     </div>
                   )}
                 </h1>
-                <div className="flex gap-10 pt-1 text-[12px]">
+                <div className="flex gap-10 pt-1 text-[12px] sm:flex-col sm:gap-1">
                   <div>
                     <b>Tác giả: </b>
                     {detailPost?.name ? detailPost?.name : "Đang tải"}
@@ -114,7 +114,7 @@ export default function Detail({ id }) {
                         detailPost?.images.map((item) => (
                           <div key={item}>
                             <img
-                              className="w-full"
+                              className="w-full rounded-md"
                               src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
                             />
                           </div>
