@@ -77,8 +77,8 @@ export default function Thamgia() {
             body: fd,
           }
         );
-        if (resp.status != 200) {
-          Alert("warning", "File của bạn chưa được tải lên!");
+        if (resp.status == 413) {
+          Alert("warning", "Hình ảnh bạn tải lên có dung lượng quá lớn!");
           return;
         }
         const respJson = await resp.json();
