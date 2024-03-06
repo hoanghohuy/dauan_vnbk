@@ -20,7 +20,7 @@ export default function TabThele() {
               aria-controls="pills-home"
               aria-selected="true"
             >
-              Quy định bài viết
+              <h2 className="text-[16px] font-[600] mb-0">Quy định bài viết</h2>
             </button>
           </li>
           <li className="nav-item w-[33.333%]" role="presentation">
@@ -34,7 +34,7 @@ export default function TabThele() {
               aria-controls="pills-profile"
               aria-selected="false"
             >
-              Giải thưởng
+              <h2 className="text-[16px] font-[600] mb-0">Giải thưởng</h2>
             </button>
           </li>
           <li className="nav-item w-[33.333%]" role="presentation">
@@ -48,7 +48,7 @@ export default function TabThele() {
               aria-controls="pills-contact"
               aria-selected="false"
             >
-              Thể lệ
+              <h2 className="text-[16px] font-[600] mb-0">Thể lệ</h2>
             </button>
           </li>
         </ul>

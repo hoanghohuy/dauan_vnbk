@@ -20,9 +20,9 @@ export default function Danhsach() {
   return (
     <section id="danhsach" className="my-4 sm:px-5">
       <div className=" bg-white px-8 py-6 rounded-xl max-w-[672px] mx-auto flex flex-col gap-3 sm:px-6">
-        <div className="text-[#1239A7] font-[700] text-[20px] text-center uppercase">
+        <h2 className="text-[#1239A7] font-[700] text-[20px] text-center uppercase mb-0">
           DANH SÁCH BÀI DỰ THI
-        </div>
+        </h2>
         <div className="pt-2">
           {loadingData ? (
             <PostSkeleton />

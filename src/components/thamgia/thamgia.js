@@ -151,9 +151,9 @@ export default function Thamgia() {
   return (
     <section id="dangky" className="mt-4 sm:px-5">
       <div className=" bg-white px-8 py-6 rounded-xl max-w-[672px] mx-auto flex flex-col gap-3 sm:px-6">
-        <div className="text-[#1239A7] font-[700] text-[20px] text-center">
+        <h1 className="text-[#1239A7] font-[700] text-[20px] text-center">
           ĐĂNG KÝ BÀI DỰ THI CỦA BẠN
-        </div>
+        </h1>
         <div>
           <div className="row">
             <div className="col-6 pb-3 sm:!w-full">
@@ -322,9 +322,9 @@ export default function Thamgia() {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="confirmModalLabel">
+              <div className="modal-title fs-5" id="confirmModalLabel">
                 Xác nhận gửi bài thi
-              </h1>
+              </div>
               <button
                 type="button"
                 className="btn-close"
