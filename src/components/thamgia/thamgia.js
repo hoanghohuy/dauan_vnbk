@@ -45,8 +45,13 @@ export default function Thamgia() {
       phoneRef.current.focus();
       return;
     }
-
-    if (content.trim().length > 1000 || content.trim().length < 1) {
+    const count = content.trim().split(" ").length;
+    if (
+      content.trim().length > 6000 ||
+      content.trim().length < 2 ||
+      count > 1000 ||
+      count < 1
+    ) {
       Alert(
         "warning",
         "Nội dung của bạn không được để trống và phải có độ dài dưới 1000 từ!"
@@ -54,7 +59,6 @@ export default function Thamgia() {
       contentRef.current.focus();
       return;
     }
-
     buttonShowModalRef.current.click();
   };
 
