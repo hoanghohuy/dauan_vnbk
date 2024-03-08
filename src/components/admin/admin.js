@@ -3,9 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import ViewBaithi from "./Baithi/viewBaithi";
 import { getAllPost } from "@/libs/getPost";
 import moment from "moment";
-import Swal from "sweetalert2";
-import { set } from "mongoose";
-import { Alert } from "../alert/alert";
 
 export default function Admin() {
   const [dataPost, setDataPost] = useState([]);
@@ -68,14 +65,14 @@ export default function Admin() {
               Số bài viết mới:{" "}
               {dataPost.filter((item) => item.published == 2).length}
             </div>
-            <div className="text-white">
-              Tổng số bài dự thi: {dataPost.length}
-            </div>
           </div>
           {loadingData ? (
             <div>Loading</div>
           ) : (
-            <table id="example" className="table table-striped">
+            <table
+              id="admin-table"
+              className="table table-striped rounded-md overflow-hidden"
+            >
               <thead>
                 <tr>
                   <th>STT</th>
@@ -153,6 +150,9 @@ export default function Admin() {
               </tfoot>
             </table>
           )}
+          <div className="text-white float-right">
+            Tổng số bài dự thi: {dataPost.length}
+          </div>
         </div>
       )}
     </>

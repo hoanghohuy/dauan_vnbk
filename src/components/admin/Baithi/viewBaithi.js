@@ -218,18 +218,16 @@ export default function ViewBaithi({ baithi, callBack }) {
               <button
                 onClick={() => handleUpdate("updatePoints")}
                 type="button"
-                className="btn btn-info bg-[#157347]"
+                className="btn btn-info bg-[#157347] text-white"
               >
                 Cập nhật điểm
               </button>
-
               <button
+                onClick={() => handleUpdate("approve")}
                 type="button"
-                className="btn btn-secondary bg-[#5c636a]"
-                data-bs-dismiss="modal"
-                ref={closeModalRef}
+                className="btn btn-success bg-[#157347]"
               >
-                Đóng
+                Phê duyệt
               </button>
               <button
                 onClick={() => handleUpdate("reject")}
@@ -239,11 +237,12 @@ export default function ViewBaithi({ baithi, callBack }) {
                 Từ chối
               </button>
               <button
-                onClick={() => handleUpdate("approve")}
                 type="button"
-                className="btn btn-success bg-[#157347]"
+                className="btn btn-secondary bg-[#5c636a]"
+                data-bs-dismiss="modal"
+                ref={closeModalRef}
               >
-                Phê duyệt
+                Đóng
               </button>
             </div>
           </div>
