@@ -6,11 +6,27 @@ import { getAllPost } from "@/libs/getPost";
 export default function Danhsach() {
   const [dataPost, setDataPost] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
+  const [dataThumbnail, setDataThumbnail] = useState([]);
 
   const getData = async () => {
     const data = await getAllPost();
-    setDataPost(data.filter((item) => item.published === 1));
+    const dataAvailable = data.filter((item) => item.published === 1);
+    setDataPost(dataAvailable);
+    dataAvailable.map(async (item) => {
+      if (item.videoLink && item.videoLink.includes("tiktok")) {
+        const a = await getThumbnailTiktok(item.videoLink, item._id);
+        setDataThumbnail([...dataThumbnail, a]);
+      }
+    });
     setLoadingData(false);
+  };
+
+  const getThumbnailTiktok = async (link, id) => {
+    const get = await fetch(`https://www.tiktok.com/oembed?url=${link}`);
+    if (get.status == 200) {
+      const data = await get.json();
+      return { id: id, thumb: data.thumbnail_url };
+    }
   };
 
   useEffect(() => {
@@ -47,6 +63,24 @@ export default function Danhsach() {
                           <img
                             className="w-full h-auto aspect-[1.5] object-cover rounded-md"
                             src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item.images[0]}`}
+                          />
+                        ) : item.videoLink?.length > 0 &&
+                          item.videoLink.includes("youtube") ? (
+                          <img
+                            className="w-full h-auto aspect-[1.5] object-cover rounded-md"
+                            src={`https://img.youtube.com/vi/${
+                              item.videoLink.split("=")?.[1]
+                            }/0.jpg`}
+                          />
+                        ) : item.videoLink?.length > 0 &&
+                          item.videoLink.includes("tiktok") ? (
+                          <img
+                            className="w-full h-auto aspect-[1.5] object-cover rounded-md"
+                            src={
+                              dataThumbnail?.find(
+                                (thumb) => thumb.id == item._id
+                              )?.thumb
+                            }
                           />
                         ) : (
                           <img

@@ -51,11 +51,23 @@ export default function Detail({ id }) {
   const [detailPost, setDetailPost] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [dataVideoTiktok, setDataVideoTiktok] = useState({});
+
+  const embedTiktok = async (link) => {
+    const get = await fetch(`https://www.tiktok.com/oembed?url=${link}`);
+    if (get.status == 200) {
+      const data = await get.json();
+      setDataVideoTiktok(data);
+    }
+  };
 
   const getDataPostByID = async () => {
     const data = await getPostByID(id);
     if (data) {
       setDetailPost(data);
+      if (data.videoLink && data.videoLink.includes("tiktok")) {
+        await embedTiktok(data.videoLink);
+      }
       setLoading(false);
     } else {
       setError(true);
@@ -141,13 +153,27 @@ export default function Detail({ id }) {
                         {detailPost?.videoLink}
                       </a>
                     </div>
-                    {detailPost?.content && (
-                      <iframe
-                        width="100%"
-                        height="315"
-                        src={detailPost?.videoLink}
-                      ></iframe>
-                    )}
+                    {detailPost?.videoLink &&
+                      detailPost?.videoLink.includes("youtube") && (
+                        <iframe
+                          width="100%"
+                          height="315"
+                          src={`https://www.youtube.com/embed/${
+                            detailPost?.videoLink.split("=")?.[1]
+                          }`}
+                        ></iframe>
+                      )}
+                    {detailPost?.videoLink &&
+                      detailPost?.videoLink.includes("tiktok") && (
+                        <div className="w-full">
+                          <iframe
+                            className="!max-w-full"
+                            width="100%"
+                            height="760"
+                            src={`https://www.tiktok.com/embed/${dataVideoTiktok.embed_product_id}`}
+                          ></iframe>
+                        </div>
+                      )}
                   </div>
                 ) : (
                   ""
