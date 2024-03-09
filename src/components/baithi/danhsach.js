@@ -17,10 +17,10 @@ export default function Danhsach() {
   };
 
   const getThumbnailTiktok = async (data) => {
-    let arr = [];
     const dataOnlyTiktokLink = data.filter((link) =>
       link.videoLink.includes("tiktok")
     );
+    let arr = [];
     dataOnlyTiktokLink.map(async (item, index) => {
       if (item.videoLink && item.videoLink.includes("tiktok")) {
         const get = await fetch(
@@ -30,9 +30,10 @@ export default function Danhsach() {
           const data = await get.json();
           const newItem = { id: item._id, thumb: data.thumbnail_url };
           arr.push(newItem);
-          if (index == dataOnlyTiktokLink.length - 1) {
-            setDataThumbnail(arr);
-          }
+          setDataThumbnail([...arr]);
+          // if (index == dataOnlyTiktokLink.length - 1) {
+          //   setDataThumbnail([...arr]);
+          // }
         }
       }
     });
@@ -87,11 +88,13 @@ export default function Danhsach() {
                             className="w-full h-auto aspect-[1.5] object-cover rounded-md"
                             loading="lazy"
                             src={
-                              dataThumbnail && dataThumbnail.length == 0
-                                ? "/banner_thele.png"
-                                : dataThumbnail?.find(
-                                    (thumb) => thumb.id == item._id
-                                  )?.thumb
+                              dataThumbnail &&
+                              dataThumbnail.find(
+                                (thumb) => thumb.id == item._id
+                              ) &&
+                              dataThumbnail.find(
+                                (thumb) => thumb.id == item._id
+                              ).thumb
                             }
                           />
                         ) : (
