@@ -82,18 +82,16 @@ export default function Danhsach() {
                             }/0.jpg`}
                           />
                         ) : item.videoLink?.length > 0 &&
-                          item.videoLink.includes("tiktok") ? (
+                          item.videoLink?.includes("tiktok") ? (
                           <img
                             className="w-full h-auto aspect-[1.5] object-cover rounded-md"
                             loading="lazy"
                             src={
-                              dataThumbnail.find(
-                                (thumb) => thumb.id == item._id
-                              )
-                                ? dataThumbnail.find(
+                              dataThumbnail && dataThumbnail.length == 0
+                                ? "/banner_thele.png"
+                                : dataThumbnail?.find(
                                     (thumb) => thumb.id == item._id
                                   )?.thumb
-                                : "/banner_thele.png"
                             }
                           />
                         ) : (
