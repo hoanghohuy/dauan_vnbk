@@ -12,21 +12,30 @@ export default function Danhsach() {
     const data = await getAllPost();
     const dataAvailable = data.filter((item) => item.published === 1);
     setDataPost(dataAvailable);
-    dataAvailable.map(async (item) => {
-      if (item.videoLink && item.videoLink.includes("tiktok")) {
-        const a = await getThumbnailTiktok(item.videoLink, item._id);
-        setDataThumbnail([...dataThumbnail, a]);
-      }
-    });
+    getThumbnailTiktok(dataAvailable);
     setLoadingData(false);
   };
 
-  const getThumbnailTiktok = async (link, id) => {
-    const get = await fetch(`https://www.tiktok.com/oembed?url=${link}`);
-    if (get.status == 200) {
-      const data = await get.json();
-      return { id: id, thumb: data.thumbnail_url };
-    }
+  const getThumbnailTiktok = async (data) => {
+    let arr = [];
+    const dataOnlyTiktokLink = data.filter((link) =>
+      link.videoLink.includes("tiktok")
+    );
+    dataOnlyTiktokLink.map(async (item, index) => {
+      if (item.videoLink && item.videoLink.includes("tiktok")) {
+        const get = await fetch(
+          `https://www.tiktok.com/oembed?url=${item.videoLink}`
+        );
+        if (get.status == 200) {
+          const data = await get.json();
+          const newItem = { id: item._id, thumb: data.thumbnail_url };
+          arr.push(newItem);
+          if (index == dataOnlyTiktokLink.length - 1) {
+            setDataThumbnail(arr);
+          }
+        }
+      }
+    });
   };
 
   useEffect(() => {
@@ -76,10 +85,15 @@ export default function Danhsach() {
                           item.videoLink.includes("tiktok") ? (
                           <img
                             className="w-full h-auto aspect-[1.5] object-cover rounded-md"
+                            loading="lazy"
                             src={
-                              dataThumbnail?.find(
+                              dataThumbnail.find(
                                 (thumb) => thumb.id == item._id
-                              )?.thumb
+                              )
+                                ? dataThumbnail.find(
+                                    (thumb) => thumb.id == item._id
+                                  )?.thumb
+                                : "/banner_thele.png"
                             }
                           />
                         ) : (
