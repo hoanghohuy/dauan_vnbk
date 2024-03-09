@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Danhsach from "../baithi/danhsach";
 import Slider from "react-slick";
 import "./customSlider.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { getPostByID } from "@/libs/getPost";
 import moment from "moment";
 import Link from "next/link";
@@ -120,25 +122,41 @@ export default function Detail({ id }) {
                   </div>
                 </div>
                 {detailPost?.images && detailPost?.images.length > 0 ? (
-                  <div id="slider-image" className="py-3">
-                    <Slider {...settings} className="custom__slider">
-                      {detailPost?.images ? (
-                        detailPost?.images.map((item) => (
-                          <div key={item}>
-                            <img
-                              className="w-full rounded-md"
-                              src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
-                            />
+                  // neu so anh lon hon 1 moi lam slide
+                  detailPost?.images.length !== 1 ? (
+                    <div id="slider-image" className="py-3">
+                      <Slider {...settings} className="custom__slider">
+                        {detailPost?.images ? (
+                          detailPost?.images.map((item) => (
+                            <div key={item}>
+                              <img
+                                className="w-full rounded-md"
+                                src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
+                              />
+                            </div>
+                          ))
+                        ) : (
+                          <div className="placeholder-glow">
+                            <span className="placeholder w-full h-[380px] rounded-md"></span>
                           </div>
-                        ))
-                      ) : (
-                        <div className="placeholder-glow">
-                          <span className="placeholder w-full h-[380px] rounded-md"></span>
+                        )}
+                      </Slider>
+                    </div>
+                  ) : (
+                    // neu chi co 1 anh thi lay anh ra luon
+                    detailPost?.images.map((item) => (
+                      <div id="slider-image" className="py-3">
+                        <div key={item}>
+                          <img
+                            className="w-full rounded-md"
+                            src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
+                          />
                         </div>
-                      )}
-                    </Slider>
-                  </div>
+                      </div>
+                    ))
+                  )
                 ) : (
+                  // neu khong co anh
                   ""
                 )}
                 {detailPost?.videoLink ? (
