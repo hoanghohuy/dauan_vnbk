@@ -34,9 +34,14 @@ export default function Danhsach() {
                       <div className="bai-thi-wrapper relative rounded-md">
                         <a
                           href={`/bai-thi/${item._id}`}
-                          className="hidden mask-baithi text-white text-[12px] items-center justify-center absolute w-full h-full bg-[#777]"
+                          className="hidden mask-baithi no-underline text-white text-[12px] items-center justify-center absolute w-full h-full bg-[#777]"
                         >
-                          {item.title}
+                          <div className="flex flex-col items-center justify-center gap-1">
+                            <div className="text-[14px]">{item.name}</div>
+                            <div className="overflow-hidden text-center text-ellipsis line-clamp-2">
+                              {item.title}
+                            </div>
+                          </div>
                         </a>
                         {item.images?.length > 0 ? (
                           <img

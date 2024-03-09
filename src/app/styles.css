@@ -34,6 +34,7 @@
 }
 
 .mask-baithi {
+    padding: 6px;
     border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.67);
     backdrop-filter: blur(1px);
