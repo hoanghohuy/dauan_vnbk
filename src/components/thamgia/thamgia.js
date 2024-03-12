@@ -29,7 +29,7 @@ export default function Thamgia() {
   const [disabled, setDisabled] = useState(false);
 
   const handleCheckBeforeSubmit = () => {
-    if (name == "") {
+    if (name.trim().length < 1) {
       Alert("warning", "Vui lòng nhập vào tên của bạn!");
       nameRef.current.focus();
       return;
@@ -45,6 +45,18 @@ export default function Thamgia() {
       phoneRef.current.focus();
       return;
     }
+
+    if (linkFacebook.trim().length < 10) {
+      Alert("warning", "Vui lòng nhập vào link facebook cá nhân của bạn!");
+      facebookLinkRef.current.focus();
+      return;
+    }
+    if (title.trim().length < 5) {
+      Alert("warning", "Tiêu đề bài thi phải lớn hơn 5 ký tự!");
+      titleRef.current.focus();
+      return;
+    }
+
     const count = content.trim().split(" ").length;
     if (
       content.trim().length > 6000 ||
