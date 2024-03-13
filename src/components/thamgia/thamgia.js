@@ -175,7 +175,7 @@ export default function Thamgia() {
   };
 
   return (
-    <section id="dangky" className="mt-4 sm:px-5">
+    <section id="dangky" className="mt-4 md:px-5 sm:px-5">
       <div className=" bg-white px-8 py-6 rounded-xl max-w-[850px] mx-auto flex flex-col gap-3 sm:px-6">
         <h1 className="text-[#1239A7] font-[700] text-[20px] text-center">
           ĐĂNG KÝ BÀI DỰ THI CỦA BẠN
@@ -275,15 +275,17 @@ export default function Thamgia() {
                           Alert("error", "Vui lòng chỉ tải lên tối đa 4 ảnh!");
                           return;
                         }
+                        let listFileCurrent = [...image];
                         const listLinkImage = linkSelectedImage;
                         for (let i = 0; i < listFile.length; i++) {
                           listLinkImage.push({
                             name: listFile[i].name,
                             link: URL ? URL?.createObjectURL(listFile[i]) : "",
                           });
+                          listFileCurrent.push(listFile[i]);
                         }
                         setLinkSelectedImage(listLinkImage);
-                        setImage(listFile);
+                        setImage(listFileCurrent);
                       }
                     }
                   }}

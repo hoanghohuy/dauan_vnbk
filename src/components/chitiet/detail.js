@@ -81,7 +81,7 @@ export default function Detail({ id }) {
   }, []);
   return (
     <main>
-      <section className="pt-5 sm:px-5 sm:!pt-4">
+      <section className="pt-5 md:px-5 sm:px-5 sm:!pt-4">
         <div className=" max-w-[850px] mx-auto flex flex-col gap-3 sm:px-0">
           <div className="text-white flex items-center gap-3">
             <div>
@@ -97,7 +97,7 @@ export default function Detail({ id }) {
             </div>
             <Link href="/">Quay lại</Link>
           </div>
-          <div className="bg-white rounded-xl px-12 py-6 sm:px-6">
+          <div className="bg-white rounded-xl px-8 py-6 sm:px-6">
             {!error ? (
               <>
                 <h1 className="text-[#102561] font-[700] text-[24px]">
