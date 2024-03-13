@@ -175,7 +175,7 @@ export default function Detail({ id }) {
                       detailPost?.videoLink.includes("youtube") && (
                         <iframe
                           width="100%"
-                          height="315"
+                          height="480"
                           src={`https://www.youtube.com/embed/${
                             detailPost?.videoLink.split("=")?.[1]
                           }`}
