@@ -235,13 +235,23 @@ export default function Thamgia() {
             <div className="col-12 pb-6">
               <textarea
                 ref={contentRef}
-                onChange={(e) => setContent(e.target.value)}
+                onChange={(e) => {
+                  const valueInput = e.target.value;
+                  if (valueInput.trim().split(" ").length < 1000) {
+                    setContent(e.target.value);
+                  } else {
+                    Alert(
+                      "warning",
+                      "Nội dung bài viết của bạn đã vượt quá 1000 từ!"
+                    );
+                  }
+                }}
                 minLength={100}
                 required
                 maxLength={6000}
                 type="text"
                 placeholder="Chia sẻ những kỉ niệm của bạn (tối đa 1000 từ)"
-                className="dangky-input min-h-[150px]"
+                className="dangky-input min-h-[150px] text-justify"
               />
             </div>
             <div className="col-12 text-[14px] font-[600] pb-2">

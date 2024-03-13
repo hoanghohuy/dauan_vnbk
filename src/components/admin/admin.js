@@ -11,6 +11,9 @@ export default function Admin() {
   const [isAdmin, setIsAdmin] = useState(false);
   const passwordRef = useRef();
 
+  const handleReload = () => {
+    getData();
+  };
   const getData = async () => {
     const data = await getAllPost();
     setDataPost(data);
@@ -153,6 +156,9 @@ export default function Admin() {
           <div className="text-white float-right">
             Tổng số bài dự thi: {dataPost.length}
           </div>
+          <button onClick={handleReload} className="btn btn-primary">
+            Tải lại
+          </button>
         </div>
       )}
     </>

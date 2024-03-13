@@ -45,6 +45,7 @@ const settings = {
 
 export default function ViewBaithi({ baithi, callBack }) {
   const [dataBaithi, setDataBaiThi] = useState({});
+  const [note, setNote] = useState("");
   const [points, setPoints] = useState(0);
   const closeModalRef = useRef();
 
@@ -52,6 +53,7 @@ export default function ViewBaithi({ baithi, callBack }) {
     setDataBaiThi({});
     setDataBaiThi(baithi);
     setPoints(baithi.points);
+    setNote(baithi.note);
   };
 
   const handleUpdate = async (type) => {
@@ -73,7 +75,7 @@ export default function ViewBaithi({ baithi, callBack }) {
     try {
       const data = await fetch(`/api/exam/${baithi._id}`, {
         method: "PUT",
-        body: JSON.stringify({ published, points: pointsInput }),
+        body: JSON.stringify({ published, points: pointsInput, note }),
       });
       if (data.status === 200) {
         Alert("sucess", "Thành công!");
@@ -216,7 +218,11 @@ export default function ViewBaithi({ baithi, callBack }) {
                 )}
                 <div className="col-12 pb-3">
                   <label>Ghi chú</label>
-                  <textarea value={dataBaithi.note} className="dangky-input" />
+                  <textarea
+                    onChange={(e) => setNote(e.target.value)}
+                    value={note}
+                    className="dangky-input"
+                  />
                 </div>
               </div>
             </div>
@@ -240,7 +246,7 @@ export default function ViewBaithi({ baithi, callBack }) {
                 type="button"
                 className="btn btn-info bg-[#157347] text-white"
               >
-                Cập nhật điểm
+                Cập nhật
               </button>
               <button
                 onClick={() => handleUpdate("approve")}
