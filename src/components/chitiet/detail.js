@@ -82,7 +82,7 @@ export default function Detail({ id }) {
   return (
     <main>
       <section className="pt-5 sm:px-5 sm:!pt-4">
-        <div className=" max-w-[800px] mx-auto flex flex-col gap-3 sm:px-0">
+        <div className=" max-w-[850px] mx-auto flex flex-col gap-3 sm:px-0">
           <div className="text-white flex items-center gap-3">
             <div>
               <svg

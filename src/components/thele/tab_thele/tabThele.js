@@ -9,7 +9,10 @@ export default function TabThele() {
           id="pills-tab"
           role="tablist"
         >
-          <li className="nav-item w-[25%] xs:w-[100%]" role="presentation">
+          <li
+            className="nav-item w-[25%] sm:w-[50%] xs:w-full"
+            role="presentation"
+          >
             <button
               className="nav-link active"
               id="pills-home-tab"
@@ -23,7 +26,10 @@ export default function TabThele() {
               <h2 className="text-[16px] font-[600] mb-0">Quy định chung</h2>
             </button>
           </li>
-          <li className="nav-item w-[25%]" role="presentation">
+          <li
+            className="nav-item w-[25%] sm:w-[50%] xs:w-full"
+            role="presentation"
+          >
             <button
               className="nav-link"
               id="pills-profile-tab"
@@ -37,7 +43,10 @@ export default function TabThele() {
               <h2 className="text-[16px] font-[600] mb-0">Giải thưởng</h2>
             </button>
           </li>
-          <li className="nav-item w-[25%]" role="presentation">
+          <li
+            className="nav-item w-[25%] sm:w-[50%] xs:w-full"
+            role="presentation"
+          >
             <button
               className="nav-link"
               id="pills-contact-tab"
@@ -53,7 +62,10 @@ export default function TabThele() {
               </h2>
             </button>
           </li>
-          <li className="nav-item w-[25%]" role="presentation">
+          <li
+            className="nav-item w-[25%] sm:w-[50%] xs:w-full"
+            role="presentation"
+          >
             <button
               className="nav-link"
               id="pills-time-tab"

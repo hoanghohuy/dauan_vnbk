@@ -176,7 +176,7 @@ export default function Thamgia() {
 
   return (
     <section id="dangky" className="mt-4 sm:px-5">
-      <div className=" bg-white px-8 py-6 rounded-xl max-w-[800px] mx-auto flex flex-col gap-3 sm:px-6">
+      <div className=" bg-white px-8 py-6 rounded-xl max-w-[850px] mx-auto flex flex-col gap-3 sm:px-6">
         <h1 className="text-[#1239A7] font-[700] text-[20px] text-center">
           ĐĂNG KÝ BÀI DỰ THI CỦA BẠN
         </h1>
