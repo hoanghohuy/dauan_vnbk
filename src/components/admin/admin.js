@@ -67,7 +67,7 @@ export default function Admin() {
             </div>
           </div>
           {loadingData ? (
-            <div>Loading</div>
+            <div className="text-white">Loading</div>
           ) : (
             <table
               id="admin-table"

@@ -9,7 +9,7 @@ export default function TabThele() {
           id="pills-tab"
           role="tablist"
         >
-          <li className="nav-item w-[33.333%] xs:w-[100%]" role="presentation">
+          <li className="nav-item w-[25%] xs:w-[100%]" role="presentation">
             <button
               className="nav-link active"
               id="pills-home-tab"
@@ -20,10 +20,10 @@ export default function TabThele() {
               aria-controls="pills-home"
               aria-selected="true"
             >
-              <h2 className="text-[16px] font-[600] mb-0">Quy định bài viết</h2>
+              <h2 className="text-[16px] font-[600] mb-0">Quy định chung</h2>
             </button>
           </li>
-          <li className="nav-item w-[33.333%]" role="presentation">
+          <li className="nav-item w-[25%]" role="presentation">
             <button
               className="nav-link"
               id="pills-profile-tab"
@@ -37,7 +37,7 @@ export default function TabThele() {
               <h2 className="text-[16px] font-[600] mb-0">Giải thưởng</h2>
             </button>
           </li>
-          <li className="nav-item w-[33.333%]" role="presentation">
+          <li className="nav-item w-[25%]" role="presentation">
             <button
               className="nav-link"
               id="pills-contact-tab"
@@ -48,7 +48,26 @@ export default function TabThele() {
               aria-controls="pills-contact"
               aria-selected="false"
             >
-              <h2 className="text-[16px] font-[600] mb-0">Thể lệ</h2>
+              <h2 className="text-[16px] font-[600] mb-0">
+                Hình thức đánh giá
+              </h2>
+            </button>
+          </li>
+          <li className="nav-item w-[25%]" role="presentation">
+            <button
+              className="nav-link"
+              id="pills-time-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-time"
+              type="button"
+              role="tab"
+              aria-controls="pills-time"
+              aria-selected="false"
+            >
+              <h2 className="text-[16px] font-[600] mb-0">
+                Thời gian tổ chức
+                {/* Thời gian tổ chức cuộc thi */}
+              </h2>
             </button>
           </li>
         </ul>
@@ -61,40 +80,66 @@ export default function TabThele() {
             aria-labelledby="pills-home-tab"
             tabIndex="0"
           >
+            <div className="font-bold text-[#1239A7]">
+              Quy định về tác phẩm dự thi:
+            </div>
             <ul className="list-disc pl-4 text-[14px]">
-              <li className="py-1">Tác phẩm có độ dài từ (100 - 1000 từ).</li>
               <li className="py-1">
-                Tác phẩm có hình ảnh/clip thu hút là một điểm cộng.
+                Bài viết có độ dài <strong>100 - 1000 từ.</strong>
+              </li>
+              <li className="py-1">
+                Tác phẩm phải có <strong>tiêu đề.</strong>
+              </li>
+              <li className="py-1">
+                Tác phẩm có{" "}
+                <strong>hình ảnh/clip thu hút là một điểm cộng lớn.</strong>
+              </li>
+              <li className="py-1">
+                BTC khuyến khích người tham gia tải ảnh ở dạng JPEG có dung
+                lượng dưới 5MB (tối đa 4 ảnh/1 tác phẩm).
+              </li>
+              <li className="py-1">
+                Đối với những tác phẩm có video, người tham gia sẽ gửi link
+                tiktok hoặc link youtube để chế độ public hoặc unlisted.
               </li>
               <li className="py-1">
                 Không giới hạn số lượng tác phẩm dự thi của mỗi cá nhân.
               </li>
               <li className="py-1">
-                Bài dự thi chưa từng tham gia cuộc thi nào và chưa từng đăng tải
-                trên các phương tiện truyền thông, mạng xã hội.
+                Bài viết dự thi chưa từng tham gia cuộc thi nào và chưa từng
+                đăng tải trên các phương tiện truyền thông.
               </li>
               <li className="py-1">
                 BTC không chịu bất kỳ trách nhiệm nào liên quan đến bản quyền
                 tác phẩm.
               </li>
               <li className="py-1">
-                BTC có quyền sử dụng và biên tập bài viết vào mục đích truyền
-                thông, quảng bá thương hiệu.
+                BTC có quyền biên tập và sử dụng tác phẩm vào mục đích truyền
+                thông.
               </li>
             </ul>
-            <div className="text-[#383B43] font-[700] py-3">
-              Thời gian tổ chức cuộc thi:
+            <div className="font-bold text-[#1239A7]">
+              Quy định về giải thưởng:
             </div>
             <ul className="list-disc pl-4 text-[14px]">
               <li className="py-1">
-                Thời gian nhận tác phẩm: từ ngày 17/03/2024 đến 17/04/2024
+                Giải thưởng voucher không quy đổi thành tiền mặt.
               </li>
               <li className="py-1">
-                Thời gian kêu gọi bình chọn: 19/04/2024 đến hết ngày 25/04/2024
-                (đối với giải bài viết được yêu thích nhất)
+                Mỗi voucher có thời hạn 3 tháng tính từ ngày trao giải và có thể
+                sử dụng tất cả các dịch vụ tại Vietnam Booking.
               </li>
               <li className="py-1">
-                Thời gian công bố kết quả: Ngày 07/05/2024
+                Giải thưởng chỉ được trao khi người tham gia thực hiện đủ các
+                bước và tuân thủ đủ quy định của chương trình.
+              </li>
+              <li className="py-1">
+                Sau khi công bố kết quả, BTC sẽ chủ động liên hệ với chủ nhân
+                của những giải thưởng dựa trên thông tin đã cung cấp.
+              </li>
+              <li className="py-1">
+                Trường hợp sau 48h không nhận được phản hồi, BTC sẽ tiến hành
+                trao giải cho người tham gia khác.
               </li>
             </ul>
           </div>
@@ -106,27 +151,21 @@ export default function TabThele() {
             tabIndex="0"
           >
             <ul className="list-disc pl-4 text-[14px]">
+              <li className="py-1">01 Giải nhất: 1.000.000 VNĐ tiền mặt</li>
               <li className="py-1">
-                <b>1 Giải nhất:</b> 1.000.000 VNĐ tiền mặt (hình thức chuyển
-                khoản).
+                01 Giải nhì: 1 Voucher trị giá 500.000 VNĐ
               </li>
               <li className="py-1">
-                <b>1 Giải nhì:</b> 1 voucher sử dụng dịch vụ tại Vietnam Booking
-                trị giá 500.000 VNĐ.
-              </li>
-              <li className="py-1">
-                <b>1 Giải bài viết được yêu thích nhất:</b> 1 voucher sử dụng
-                dịch vụ tại Vietnam Booking trị giá 500.000 VNĐ.
-              </li>
-              <li className="py-1">
-                Hình thức nhận thưởng: Chuyển khoản/nhận giải trực tiếp tại văn
-                phòng.
-              </li>
-              <li className="py-1">
-                BTC sẽ tuyển chọn những bài viết hay nhất để được cập nhật trên
-                trang blog quảng bá du lịch của Vietnam Booking.
+                01 Giải tác phẩm được yêu thích nhất: 1 Voucher trị giá 500.000
+                VNĐ
               </li>
             </ul>
+            <div className="text-[14px]">
+              Người tham gia đạt giải sẽ nhận thưởng bằng hình thức chuyển
+              khoản/nhận giải trực tiếp tại văn phòng. Và những những bài dự thi
+              xuất sắc nhất sẽ được Vietnam Booking cập nhật trên fanpage và
+              trang blog du lịch với lượng truy cập hơn 2.000.000 lượt mỗi tháng
+            </div>
           </div>
           <div
             className="tab-pane fade"
@@ -137,21 +176,56 @@ export default function TabThele() {
           >
             <ul className="list-disc pl-4 text-[14px]">
               <li className="py-1">
-                <b>Đối với giải nhất và nhì:</b> BTC sẽ lựa chọn ra 2 tác phẩm
-                hay nhất để tiến hành trao giải.
+                Đối với giải nhất và giải nhì: BTC sẽ chọn ra 2 tác phẩm xuất
+                sắc nhất để tiến hành trao giải.
               </li>
               <li className="py-1">
-                <b>Đối với giải bài viết được yêu thích nhất:</b> BTC sẽ chọn ra
-                10 tác phẩm hay nhất để đăng trên trang fanpage. Bài viết có
-                lượt tương tác cao nhất dựa trên phương thức tính điểm 1 like =
-                1 điểm, 1 tym = 2 điểm, 1 share = 3 điểm.
-              </li>
-              <li className="py-1">
-                <b>
-                  <i>Quyết định của Ban Tổ Chức là quyết định cuối cùng.</i>
-                </b>
+                Đối với giải tác phẩm được yêu thích nhất: BTC sẽ chọn thêm 10
+                bài dự thi xuất sắc để đăng trên fanpage Vietnam Booking. Trong
+                đó, tác phẩm đạt giải sẽ là bài dự thi có số điểm cao nhất dựa
+                trên phương thức tính điểm bình chọn sau:{" "}
+                <strong>
+                  1 like = 1 điểm, 1 tim = 2 điểm, 1 share = 3 điểm.
+                </strong>
               </li>
             </ul>
+            <div className="text-[14px]">
+              Lưu ý: Trường hợp số điểm bình chọn cao nhất thuộc về tác phẩm đạt
+              giải nhất hoặc giải nhì thì BTC sẽ trao giải cho tác phẩm có số
+              điểm cao kế tiếp. Nếu BTC phát hiện bài viết có dấu hiệu sao chép
+              thì tác phẩm dự thi xem như không đủ điều kiện đạt giải. Và trong
+              mọi trường hợp, quyết định của BTC là quyết định cuối cùng.
+            </div>
+          </div>
+          {/* Thời gian tổ chức cuộc thi: */}
+          <div
+            className="tab-pane fade"
+            id="pills-time"
+            role="tabpanel"
+            aria-labelledby="pills-time-tab"
+            tabIndex="0"
+          >
+            <ul className="list-disc pl-4 text-[14px]">
+              <li className="py-1">
+                Thời gian nhận tác phẩm: từ ngày{" "}
+                <strong>17/03/2024 đến 17/04/2024.</strong>
+              </li>
+              <li className="py-1">
+                Thời gian kêu gọi bình chọn giải tác phẩm được yêu thích nhất:
+                từ ngày <strong>20/04/2024 đến 25/04/2024</strong> (like, tim,
+                share bài viết trực tiếp trên trang fanpage Vietnam Booking).
+              </li>
+              <li className="py-1">
+                Thời gian công bố kết quả: <strong>Ngày 07/05/2024.</strong>
+              </li>
+            </ul>
+            <div className="text-[14px]">
+              Những bài dự thi xuất sắc nhất sẽ được Vietnam Booking cập nhật
+              trên trang blog du lịch với lượng truy cập hơn 2.000.000 lượt mỗi
+              tháng. Vậy còn chần chờ gì mà không trao gửi “đứa con tinh thần”
+              của bạn để cùng Vietnam Booking lan tỏa niềm đam mê du lịch đi
+              khắp nơi và nhận về nhiều phần thưởng hấp dẫn!
+            </div>
           </div>
         </div>
       </div>

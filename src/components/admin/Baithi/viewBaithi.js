@@ -186,21 +186,29 @@ export default function ViewBaithi({ baithi, callBack }) {
                   <div className="col-12 pb-3">
                     <label>Hình ảnh đính kèm</label>
                     <div className="flex flex-col gap-4">
-                      <Slider {...settings} className="custom__slider">
-                        {dataBaithi?.images ? (
-                          dataBaithi?.images.map((item) => (
-                            <div key={item}>
-                              <img
-                                src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
-                              />
-                            </div>
-                          ))
-                        ) : (
-                          <div className="placeholder-glow">
-                            <span className="placeholder w-full h-[380px] rounded-md"></span>
+                      {dataBaithi?.images && dataBaithi?.images.length > 0 ? (
+                        // neu hinh anh chi co 1 thi chi hien thi 1 anh
+                        dataBaithi?.images.length == 1 ? (
+                          <div key={1}>
+                            <img
+                              className="w-full"
+                              src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${dataBaithi?.images[0]}`}
+                            />
                           </div>
-                        )}
-                      </Slider>
+                        ) : (
+                          <Slider {...settings} className="custom__slider">
+                            {dataBaithi?.images.map((item) => (
+                              <div key={item}>
+                                <img
+                                  src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
+                                />
+                              </div>
+                            ))}
+                          </Slider>
+                        )
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </div>
                 ) : (
@@ -213,7 +221,16 @@ export default function ViewBaithi({ baithi, callBack }) {
                 className="form-control !w-[80px]"
                 type="number"
                 value={points}
-                onChange={(e) => setPoints(e.target.value)}
+                onChange={(e) => {
+                  const point = e.target.value;
+                  console.log("point", typeof point);
+                  if (point == "") {
+                    setPoints("");
+                  }
+                  if (point) {
+                    setPoints(e.target.value);
+                  }
+                }}
               />
               <button
                 onClick={() => handleUpdate("updatePoints")}

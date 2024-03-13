@@ -25,8 +25,17 @@ export default function Thamgia() {
   const facebookLinkRef = useRef();
   const titleRef = useRef();
   const linkVideoRef = useRef();
-
+  const uploadRef = useRef();
   const [disabled, setDisabled] = useState(false);
+
+  const handleCancelImage = (item) => {
+    setLinkSelectedImage(linkSelectedImage.filter((child) => child !== item));
+    let copyImage = [...image];
+    const imageAfterRemoved = copyImage.filter(
+      (imageItem) => imageItem.name !== item.name
+    );
+    setImage(imageAfterRemoved);
+  };
 
   const handleCheckBeforeSubmit = () => {
     if (name.trim().length < 1) {
@@ -51,8 +60,8 @@ export default function Thamgia() {
       facebookLinkRef.current.focus();
       return;
     }
-    if (title.trim().length < 5) {
-      Alert("warning", "Tiêu đề bài thi phải lớn hơn 5 ký tự!");
+    if (title.trim().length < 1) {
+      Alert("warning", "Tiêu đề bài thi không được để trống!");
       titleRef.current.focus();
       return;
     }
@@ -166,7 +175,7 @@ export default function Thamgia() {
 
   return (
     <section id="dangky" className="mt-4 sm:px-5">
-      <div className=" bg-white px-8 py-6 rounded-xl max-w-[672px] mx-auto flex flex-col gap-3 sm:px-6">
+      <div className=" bg-white px-8 py-6 rounded-xl max-w-[800px] mx-auto flex flex-col gap-3 sm:px-6">
         <h1 className="text-[#1239A7] font-[700] text-[20px] text-center">
           ĐĂNG KÝ BÀI DỰ THI CỦA BẠN
         </h1>
@@ -243,6 +252,7 @@ export default function Thamgia() {
                 <input
                   className="hidden"
                   id="upload-input-image"
+                  ref={uploadRef}
                   type="file"
                   accept="image/*"
                   multiple
@@ -254,11 +264,12 @@ export default function Thamgia() {
                           Alert("error", "Vui lòng chỉ tải lên tối đa 4 ảnh!");
                           return;
                         }
-                        const listLinkImage = [];
+                        const listLinkImage = linkSelectedImage;
                         for (let i = 0; i < listFile.length; i++) {
-                          listLinkImage.push(
-                            URL ? URL?.createObjectURL(listFile[i]) : ""
-                          );
+                          listLinkImage.push({
+                            name: listFile[i].name,
+                            link: URL ? URL?.createObjectURL(listFile[i]) : "",
+                          });
                         }
                         setLinkSelectedImage(listLinkImage);
                         setImage(listFile);
@@ -276,8 +287,7 @@ export default function Thamgia() {
                   </label>
                 </div>
                 <div className="mt-2 max-w-[400px] text-[12px] mx-auto">
-                  2048x1365px - Dung lượng hình ảnh phải dưới 5MB và định dạng
-                  JPEG nếu có thể.
+                  Dung lượng hình ảnh dưới 5MB và khuyến khích định dạng JPEG.
                 </div>
               </div>
             </div>
@@ -290,7 +300,30 @@ export default function Thamgia() {
                   {linkSelectedImage &&
                     linkSelectedImage.length > 0 &&
                     linkSelectedImage.map((item, index) => (
-                      <img key={item} className="w-auto h-[50px]" src={item} />
+                      <div className="relative">
+                        <img
+                          key={item.name}
+                          className="w-auto h-[80px] rounded-md"
+                          src={item.link}
+                        />
+                        <button
+                          onClick={() => handleCancelImage(item)}
+                          className="absolute top-[-6px] right-[-6px]"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="white"
+                          >
+                            <path
+                              d="M16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM5.35355 4.64645C5.15829 4.45118 4.84171 4.45118 4.64645 4.64645C4.45118 4.84171 4.45118 5.15829 4.64645 5.35355L7.29289 8L4.64645 10.6464C4.45118 10.8417 4.45118 11.1583 4.64645 11.3536C4.84171 11.5488 5.15829 11.5488 5.35355 11.3536L8 8.70711L10.6464 11.3536C10.8417 11.5488 11.1583 11.5488 11.3536 11.3536C11.5488 11.1583 11.5488 10.8417 11.3536 10.6464L8.70711 8L11.3536 5.35355C11.5488 5.15829 11.5488 4.84171 11.3536 4.64645C11.1583 4.45118 10.8417 4.45118 10.6464 4.64645L8 7.29289L5.35355 4.64645Z"
+                              fill="red"
+                            />
+                          </svg>
+                        </button>
+                      </div>
                     ))}
                 </div>
               </div>
