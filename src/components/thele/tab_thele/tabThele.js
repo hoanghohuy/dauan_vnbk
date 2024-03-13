@@ -207,10 +207,11 @@ export default function TabThele() {
             <div className="text-[14px] text-justify">
               <strong className="text-[#dc2626]">Lưu ý:</strong> Trường hợp số
               điểm bình chọn cao nhất thuộc về tác phẩm đạt giải nhất hoặc giải
-              nhì thì BTC sẽ trao giải cho tác phẩm có số điểm cao kế tiếp. Nếu
-              BTC phát hiện bài viết có dấu hiệu sao chép thì tác phẩm dự thi
-              xem như không đủ điều kiện đạt giải. Và trong mọi trường hợp,
-              quyết định của BTC là quyết định cuối cùng.
+              nhì thì BTC sẽ trao giải cho người tham gia sở hữu tác phẩm có số
+              điểm bình chọn cao kế tiếp. Nếu BTC phát hiện bài viết có dấu hiệu
+              sao chép thì tác phẩm dự thi xem như không đủ điều kiện đạt giải.
+              Và trong mọi trường hợp, quyết định của BTC là quyết định cuối
+              cùng.
             </div>
           </div>
           {/* Thời gian tổ chức cuộc thi: */}
