@@ -214,6 +214,10 @@ export default function ViewBaithi({ baithi, callBack }) {
                 ) : (
                   <div className="col-12">Không có hình ảnh đính kèm</div>
                 )}
+                <div className="col-12 pb-3">
+                  <label>Ghi chú</label>
+                  <textarea value={dataBaithi.note} className="dangky-input" />
+                </div>
               </div>
             </div>
             <div className="modal-footer">
@@ -223,11 +227,10 @@ export default function ViewBaithi({ baithi, callBack }) {
                 value={points}
                 onChange={(e) => {
                   const point = e.target.value;
-                  console.log("point", typeof point);
                   if (point == "") {
                     setPoints("");
                   }
-                  if (point) {
+                  if (point && parseInt(point) <= 10 && point.length <= 3) {
                     setPoints(e.target.value);
                   }
                 }}

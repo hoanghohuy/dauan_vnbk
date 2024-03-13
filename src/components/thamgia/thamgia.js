@@ -124,6 +124,7 @@ export default function Thamgia() {
       videoLink: linkVideo,
       published: 2,
       points: 0,
+      note: "",
     };
     try {
       const resp = await fetch("/api/exam", {

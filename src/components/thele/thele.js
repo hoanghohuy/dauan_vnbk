@@ -4,7 +4,7 @@ import TabThele from "./tab_thele/tabThele";
 export default function Thele() {
   return (
     <section className="pt-5 sm:px-5 sm:!pt-4" id="thele">
-      <div className="bg-white px-12 py-6 rounded-xl max-w-[800px] mx-auto flex flex-col gap-3 sm:px-6">
+      <div className="bg-white px-12 py-6 rounded-xl max-w-[800px] mx-auto flex flex-col gap-3 sm:px-6 text-justify">
         <div className="text-[#1239A7] font-[700] text-[20px] text-center uppercase">
           Cuộc thi viết “Dấu Ấn Trên Từng Bước Chân”
         </div>

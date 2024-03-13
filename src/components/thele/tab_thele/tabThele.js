@@ -151,20 +151,23 @@ export default function TabThele() {
             tabIndex="0"
           >
             <ul className="list-disc pl-4 text-[14px]">
-              <li className="py-1">01 Giải nhất: 1.000.000 VNĐ tiền mặt</li>
               <li className="py-1">
-                01 Giải nhì: 1 Voucher trị giá 500.000 VNĐ
+                01 Giải nhất: <strong>1.000.000 VNĐ tiền mặt</strong>
               </li>
               <li className="py-1">
-                01 Giải tác phẩm được yêu thích nhất: 1 Voucher trị giá 500.000
-                VNĐ
+                01 Giải nhì: <strong>1 Voucher trị giá 500.000 VNĐ</strong>
+              </li>
+              <li className="py-1">
+                01 Giải tác phẩm được yêu thích nhất:{" "}
+                <strong>1 Voucher trị giá 500.000 VNĐ</strong>
               </li>
             </ul>
             <div className="text-[14px]">
               Người tham gia đạt giải sẽ nhận thưởng bằng hình thức chuyển
               khoản/nhận giải trực tiếp tại văn phòng. Và những những bài dự thi
               xuất sắc nhất sẽ được Vietnam Booking cập nhật trên fanpage và
-              trang blog du lịch với lượng truy cập hơn 2.000.000 lượt mỗi tháng
+              trang blog du lịch với lượng truy cập hơn 2.000.000 lượt mỗi
+              tháng.
             </div>
           </div>
           <div
@@ -176,25 +179,26 @@ export default function TabThele() {
           >
             <ul className="list-disc pl-4 text-[14px]">
               <li className="py-1">
-                Đối với giải nhất và giải nhì: BTC sẽ chọn ra 2 tác phẩm xuất
-                sắc nhất để tiến hành trao giải.
+                <strong>Đối với giải nhất và giải nhì:</strong> BTC sẽ chọn ra 2
+                tác phẩm xuất sắc nhất để tiến hành trao giải.
               </li>
               <li className="py-1">
-                Đối với giải tác phẩm được yêu thích nhất: BTC sẽ chọn thêm 10
-                bài dự thi xuất sắc để đăng trên fanpage Vietnam Booking. Trong
-                đó, tác phẩm đạt giải sẽ là bài dự thi có số điểm cao nhất dựa
-                trên phương thức tính điểm bình chọn sau:{" "}
+                <strong>Đối với giải tác phẩm được yêu thích nhất:</strong> BTC
+                sẽ chọn thêm 10 bài dự thi xuất sắc để đăng trên fanpage Vietnam
+                Booking. Trong đó, tác phẩm đạt giải sẽ là bài dự thi có số điểm
+                cao nhất dựa trên phương thức tính điểm bình chọn sau:{" "}
                 <strong>
                   1 like = 1 điểm, 1 tim = 2 điểm, 1 share = 3 điểm.
                 </strong>
               </li>
             </ul>
-            <div className="text-[14px]">
-              Lưu ý: Trường hợp số điểm bình chọn cao nhất thuộc về tác phẩm đạt
-              giải nhất hoặc giải nhì thì BTC sẽ trao giải cho tác phẩm có số
-              điểm cao kế tiếp. Nếu BTC phát hiện bài viết có dấu hiệu sao chép
-              thì tác phẩm dự thi xem như không đủ điều kiện đạt giải. Và trong
-              mọi trường hợp, quyết định của BTC là quyết định cuối cùng.
+            <div className="text-[14px] text-justify">
+              <strong className="text-[#dc2626]">Lưu ý:</strong> Trường hợp số
+              điểm bình chọn cao nhất thuộc về tác phẩm đạt giải nhất hoặc giải
+              nhì thì BTC sẽ trao giải cho tác phẩm có số điểm cao kế tiếp. Nếu
+              BTC phát hiện bài viết có dấu hiệu sao chép thì tác phẩm dự thi
+              xem như không đủ điều kiện đạt giải. Và trong mọi trường hợp,
+              quyết định của BTC là quyết định cuối cùng.
             </div>
           </div>
           {/* Thời gian tổ chức cuộc thi: */}
