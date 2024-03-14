@@ -113,9 +113,14 @@ export default function Danhsach() {
                                 }
                               />
                             ) : (
-                              <div className="w-full px-2 h-auto aspect-[1.5] object-cover rounded-md flex items-center justify-center text-center border-[1px] border-solid border-[#ccc]">
-                                <div className="overflow-hidden text-ellipsis line-clamp-3 text-[15px]">
-                                  {item.title}
+                              <div className="w-full px-2 h-auto aspect-[1.5] object-cover rounded-md flex items-center justify-center text-center bg-[#777]">
+                                <div className="flex flex-col items-center justify-center gap-1">
+                                  <div className="text-white font-[500] text-[14px]">
+                                    {item.name}
+                                  </div>
+                                  <div className="text-white font-[500] text-[12px] overflow-hidden text-center text-ellipsis line-clamp-2">
+                                    {item.title}
+                                  </div>
                                 </div>
                               </div>
                             )}
