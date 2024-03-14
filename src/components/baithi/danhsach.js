@@ -69,10 +69,10 @@ export default function Danhsach() {
                           className="hidden mask-baithi no-underline text-white text-[12px] items-center justify-center absolute w-full h-full bg-[#777]"
                         >
                           <div className="flex flex-col items-center justify-center gap-1">
-                            <div className="text-[14px] font-[500]">
+                            <div className="text-[15px] font-[500]">
                               {item.name}
                             </div>
-                            <div className="overflow-hidden font-[500] text-center text-ellipsis line-clamp-2">
+                            <div className="overflow-hidden text-[13px] font-[500] text-center text-ellipsis line-clamp-2">
                               {item.title}
                             </div>
                           </div>
@@ -115,10 +115,10 @@ export default function Danhsach() {
                             ) : (
                               <div className="w-full px-2 h-auto aspect-[1.5] object-cover rounded-md flex items-center justify-center text-center bg-[#777]">
                                 <div className="flex flex-col items-center justify-center gap-1">
-                                  <div className="text-white font-[500] text-[14px]">
+                                  <div className="text-white font-[500] text-[15px]">
                                     {item.name}
                                   </div>
-                                  <div className="text-white font-[500] text-[12px] overflow-hidden text-center text-ellipsis line-clamp-2">
+                                  <div className="text-white font-[500] text-[13px] overflow-hidden text-center text-ellipsis line-clamp-2">
                                     {item.title}
                                   </div>
                                 </div>
@@ -128,10 +128,10 @@ export default function Danhsach() {
                         ) : (
                           <div className="w-full px-2 h-auto aspect-[1.5] object-cover rounded-md flex items-center justify-center text-center bg-[#777]">
                             <div className="flex flex-col items-center justify-center gap-1">
-                              <div className="text-white font-[500] text-[14px]">
+                              <div className="text-white font-[500] text-[15px]">
                                 {item.name}
                               </div>
-                              <div className="text-white font-[500] text-[12px] overflow-hidden text-center text-ellipsis line-clamp-2">
+                              <div className="text-white font-[500] text-[13px] overflow-hidden text-center text-ellipsis line-clamp-2">
                                 {item.title}
                               </div>
                             </div>
