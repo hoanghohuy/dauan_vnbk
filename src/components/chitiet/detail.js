@@ -198,6 +198,7 @@ export default function Detail({ id }) {
                 )}
                 <div className="text-[14px] pt-2" id="content">
                   <div
+                    className="text-justify"
                     dangerouslySetInnerHTML={{
                       __html: detailPost?.content,
                     }}
