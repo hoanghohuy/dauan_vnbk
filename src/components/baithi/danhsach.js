@@ -66,7 +66,7 @@ export default function Danhsach() {
                       <div className="bai-thi-wrapper relative rounded-md">
                         <a
                           href={`/bai-thi/${item._id}`}
-                          className="hidden mask-baithi no-underline text-white text-[12px] items-center justify-center absolute w-full h-full bg-[#777]"
+                          className="hidden mask-baithi no-underline text-white text-[12px] items-center justify-center absolute w-full h-full bg-[#777] z-[2]"
                         >
                           <div className="flex flex-col items-center justify-center gap-1">
                             <div className="text-[15px] font-[500]">
@@ -114,7 +114,11 @@ export default function Danhsach() {
                               />
                             ) : (
                               <div className="w-full px-2 h-auto aspect-[1.5] object-cover rounded-md flex items-center justify-center text-center bg-[#777]">
-                                <div className="flex flex-col items-center justify-center gap-1">
+                                <img
+                                  src="/image_bg.png"
+                                  className="absolute w-full h-full top-0 left-0 rounded-md z-[1]"
+                                />
+                                <div className="flex flex-col items-center justify-center gap-1 z-[1]">
                                   <div className="text-white font-[500] text-[15px]">
                                     {item.name}
                                   </div>
@@ -127,7 +131,11 @@ export default function Danhsach() {
                           </>
                         ) : (
                           <div className="w-full px-2 h-auto aspect-[1.5] object-cover rounded-md flex items-center justify-center text-center bg-[#777]">
-                            <div className="flex flex-col items-center justify-center gap-1">
+                            <img
+                              src="/image_bg.png"
+                              className="absolute w-full h-full top-0 left-0 rounded-md z-[1]"
+                            />
+                            <div className="flex flex-col items-center justify-center gap-1 z-[1]">
                               <div className="text-white font-[500] text-[15px]">
                                 {item.name}
                               </div>
