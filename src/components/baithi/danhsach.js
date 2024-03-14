@@ -23,17 +23,23 @@ export default function Danhsach() {
     let arr = [];
     dataOnlyTiktokLink.map(async (item, index) => {
       if (item.videoLink && item.videoLink.includes("tiktok")) {
-        const get = await fetch(
-          `https://www.tiktok.com/oembed?url=${item.videoLink}`
-        );
-        if (get.status == 200) {
-          const data = await get.json();
-          const newItem = { id: item._id, thumb: data.thumbnail_url };
+        try {
+          const get = await fetch(
+            `https://www.tiktok.com/oembed?url=${item.videoLink}`
+          );
+          if (get.status == 200) {
+            const data = await get.json();
+            const newItem = { id: item._id, thumb: data.thumbnail_url };
+            arr.push(newItem);
+            setDataThumbnail([...arr]);
+            // if (index == dataOnlyTiktokLink.length - 1) {
+            //   setDataThumbnail([...arr]);
+            // }
+          }
+        } catch (error) {
+          const newItem = { id: item._id, thumb: "" };
           arr.push(newItem);
           setDataThumbnail([...arr]);
-          // if (index == dataOnlyTiktokLink.length - 1) {
-          //   setDataThumbnail([...arr]);
-          // }
         }
       }
     });
@@ -84,24 +90,40 @@ export default function Danhsach() {
                           />
                         ) : item.videoLink?.length > 0 &&
                           item.videoLink?.includes("tiktok") ? (
-                          <img
-                            className="w-full h-auto aspect-[1.5] object-cover rounded-md"
-                            loading="lazy"
-                            src={
-                              dataThumbnail &&
-                              dataThumbnail.find(
-                                (thumb) => thumb.id == item._id
-                              ) &&
-                              dataThumbnail.find(
-                                (thumb) => thumb.id == item._id
-                              ).thumb
-                            }
-                          />
+                          <>
+                            {dataThumbnail &&
+                            dataThumbnail.find(
+                              (thumb) => thumb.id == item._id
+                            ) &&
+                            dataThumbnail.find((thumb) => thumb.id == item._id)
+                              .thumb !== "" ? (
+                              <img
+                                className="w-full h-auto aspect-[1.5] object-cover rounded-md"
+                                loading="lazy"
+                                src={
+                                  dataThumbnail &&
+                                  dataThumbnail.find(
+                                    (thumb) => thumb.id == item._id
+                                  ) &&
+                                  dataThumbnail.find(
+                                    (thumb) => thumb.id == item._id
+                                  ).thumb
+                                }
+                              />
+                            ) : (
+                              <div className="w-full px-2 h-auto aspect-[1.5] object-cover rounded-md flex items-center justify-center text-center border-[1px] border-solid border-[#ccc] bg-[#1239A7] text-white">
+                                {item.title}
+                              </div>
+                            )}
+                          </>
                         ) : (
-                          <img
-                            className="w-full h-auto aspect-[1.5] object-cover rounded-md"
-                            src="/banner_thele.png"
-                          />
+                          <div className="w-full px-2 h-auto aspect-[1.5] object-cover rounded-md flex items-center justify-center text-center border-[1px] border-solid border-[#ccc] bg-[#1239A7] text-white">
+                            {item.title}
+                          </div>
+                          // <img
+                          //   className="w-full h-auto aspect-[1.5] object-cover rounded-md"
+                          //   src="/banner_thele.png"
+                          // />
                         )}
                       </div>
                     </div>
