@@ -108,7 +108,7 @@ export default function TabThele() {
               </li>
               <li className="py-1">
                 BTC khuyến khích người tham gia tải ảnh ở dạng JPEG có dung
-                lượng dưới 5MB (tối đa 4 ảnh/1 tác phẩm).
+                lượng dưới 5MB (tối đa 20 ảnh/1 tác phẩm).
               </li>
               <li className="py-1">
                 Đối với những tác phẩm có video, người tham gia sẽ gửi link

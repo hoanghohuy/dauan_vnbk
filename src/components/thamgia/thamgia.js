@@ -142,6 +142,8 @@ export default function Thamgia() {
             confirmButton: "customConfirmButton",
             htmlContainer: "customHtmlContainer",
           },
+        }).then(() => {
+          window.location.reload();
         });
         resetForm();
         setDisabled(false);
@@ -256,7 +258,7 @@ export default function Thamgia() {
             </div>
             <div className="col-12 text-[14px] font-[600] pb-2">
               Chia sẻ hình ảnh về chuyến đi của bạn{" "}
-              <span className="text-[#808288]">(Tối đa 4 ảnh)</span>
+              <span className="text-[#808288]">(Tối đa 20 ảnh)</span>
             </div>
             <div id="upload-image" className="col-12 w-full">
               <div className="text-center py-10 px-5 border-[1px] border-dashed border-[#B1B5C3] rounded-md">
@@ -271,8 +273,8 @@ export default function Thamgia() {
                     if (target.files) {
                       const listFile = target.files;
                       if (listFile) {
-                        if (listFile.length > 4) {
-                          Alert("error", "Vui lòng chỉ tải lên tối đa 4 ảnh!");
+                        if (listFile.length > 20) {
+                          Alert("error", "Vui lòng chỉ tải lên tối đa 20 ảnh!");
                           return;
                         }
                         let listFileCurrent = [...image];
@@ -309,7 +311,7 @@ export default function Thamgia() {
                 <div className="text-[14px] font-[600] pb-2">
                   Hình ảnh đã chọn:
                 </div>
-                <div className="flex gap-4">
+                <div className="flex gap-4 flex-wrap">
                   {linkSelectedImage &&
                     linkSelectedImage.length > 0 &&
                     linkSelectedImage.map((item, index) => (
