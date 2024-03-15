@@ -277,6 +277,14 @@ export default function Thamgia() {
                           Alert("error", "Vui lòng chỉ tải lên tối đa 20 ảnh!");
                           return;
                         }
+                        if (image.length) {
+                          Alert("error", "Vui lòng chỉ tải lên tối đa 20 ảnh!");
+                          return;
+                        }
+                        if (image.length + listFile.length > 20) {
+                          Alert("error", "Vui lòng chỉ tải lên tối đa 20 ảnh!");
+                          return;
+                        }
                         let listFileCurrent = [...image];
                         const listLinkImage = linkSelectedImage;
                         for (let i = 0; i < listFile.length; i++) {

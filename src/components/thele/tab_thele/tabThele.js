@@ -196,22 +196,19 @@ export default function TabThele() {
               </li>
               <li className="py-1">
                 <strong>Đối với giải tác phẩm được yêu thích nhất:</strong> BTC
-                sẽ chọn thêm 10 bài dự thi xuất sắc để đăng trên fanpage Vietnam
-                Booking. Trong đó, tác phẩm đạt giải sẽ là bài dự thi có số điểm
-                cao nhất dựa trên phương thức tính điểm bình chọn sau:{" "}
+                sẽ chọn thêm 10 bài dự thi xuất sắc khác để đăng trên fanpage
+                Vietnam Booking. Trong đó, tác phẩm đạt giải sẽ là bài dự thi có
+                số điểm cao nhất dựa trên phương thức tính điểm bình chọn sau:{" "}
                 <strong>
                   1 like = 1 điểm, 1 tim = 2 điểm, 1 share = 3 điểm.
                 </strong>
               </li>
             </ul>
             <div className="text-[14px] text-justify">
-              <strong className="text-[#dc2626]">Lưu ý:</strong> Trường hợp số
-              điểm bình chọn cao nhất thuộc về tác phẩm đạt giải nhất hoặc giải
-              nhì thì BTC sẽ trao giải cho người tham gia sở hữu tác phẩm có số
-              điểm bình chọn cao kế tiếp. Nếu BTC phát hiện bài viết có dấu hiệu
-              sao chép thì tác phẩm dự thi xem như không đủ điều kiện đạt giải.
-              Và trong mọi trường hợp, quyết định của BTC là quyết định cuối
-              cùng.
+              <strong className="text-[#dc2626]">Lưu ý:</strong> Nếu BTC phát
+              hiện bài viết có dấu hiệu sao chép thì tác phẩm dự thi xem như
+              không đủ điều kiện đạt giải. Và trong mọi trường hợp, quyết định
+              của BTC là quyết định cuối cùng.
             </div>
           </div>
           {/* Thời gian tổ chức cuộc thi: */}
