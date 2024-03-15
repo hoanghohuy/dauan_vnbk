@@ -277,7 +277,7 @@ export default function Thamgia() {
                           Alert("error", "Vui lòng chỉ tải lên tối đa 20 ảnh!");
                           return;
                         }
-                        if (image.length) {
+                        if (image.length >= 20) {
                           Alert("error", "Vui lòng chỉ tải lên tối đa 20 ảnh!");
                           return;
                         }
