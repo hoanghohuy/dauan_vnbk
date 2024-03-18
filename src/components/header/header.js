@@ -8,16 +8,20 @@ export default function Header() {
       <div className="w-full flex sm:items-center">
         <div className="w-[40%] lg:hidden"></div>
         <div className="w-[30%] flex gap-12 justify-center xl:gap-6 lg:w-[50%] lg:justify-start lg:pl-10 md:pl-5 md:w-[40%] sm:w-full">
-          <img
-            src="/vnbk.png"
-            alt="logo"
-            className="h-[47px] w-auto object-cover md:h-10"
-          />
-          <img
-            src="/dau_an.png"
-            alt="dau an tren tung buoc chan"
-            className="h-[47px] w-auto object-cover md:h-10"
-          />
+          <a href="/">
+            <img
+              src="/vnbk.png"
+              alt="logo"
+              className="h-[47px] w-auto object-cover md:h-10"
+            />
+          </a>
+          <a href="/">
+            <img
+              src="/dau_an.png"
+              alt="dau an tren tung buoc chan"
+              className="h-[47px] w-auto object-cover md:h-10"
+            />
+          </a>
         </div>
         <div className="hidden menu sm:block">
           <div
