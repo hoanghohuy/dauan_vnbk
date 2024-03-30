@@ -130,7 +130,7 @@ export default function Detail({ id }) {
                           detailPost?.images.map((item) => (
                             <div key={item}>
                               <img
-                                className="w-full rounded-md"
+                                className="w-full rounded-md aspect-square object-contain"
                                 src={`${process.env.NEXT_PUBLIC_SERVER_FILE_URL}/${process.env.NEXT_PUBLIC_SITE_NAME}${item}`}
                               />
                             </div>
