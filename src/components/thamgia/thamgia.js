@@ -134,7 +134,7 @@ export default function Thamgia() {
       if (resp.status === 201) {
         Swal.fire({
           title: "Gửi bài dự thi thành công",
-          text: "Cám ơn bạn đã gửi bài dự thi cho chúng tôi.",
+          text: "Cám ơn bạn đã gửi bài dự thi cho chúng tôi. Bài thi của bạn đang được chờ xét duyệt!",
           icon: "success",
           confirmButtonText: "Xác nhận",
           customClass: {
